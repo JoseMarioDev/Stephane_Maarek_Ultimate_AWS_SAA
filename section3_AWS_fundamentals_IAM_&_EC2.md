@@ -187,4 +187,98 @@
 - script runs with root user
 
 - there's a file w/the commands in the course resources
+
+#
+
+## 29. EC2 Instances Launch Types
+
+- on demand instances: short workload, predictable pricing (what we've been using for this course)
+- reserved(minimum 1 year):
+  - reserved instances: long workloads
+  - convertible reserved instances: long workloads w/flexible instances(can change the instance hardware type)
+  - scheduled reserved instances: ex -> every Thu between 3-6pm
+- Spot instances: short workloads, for cheap, can lose instances (less reliable)
+- dedicated instances: no other customers will share your hardware
+- dedicated hosts: book an entire physical server, control instance placement
+
+1. on-demand
+
+- pay for what you use
+- highest cost, no upfront payment
+- no long term commitment
+- recommended for short term and un-interrupted workloads, where you can't predict how the application will behave
+
+2. Reserved Instances
+
+- up to 75% discount
+- pay upfront for what you use with long term commitment
+- reservation period can be 1 or 3 years
+- reserve a specific instance type
+- recommended for steady state usage applications (think database)
+
+3. Convertible Reserved Instance
+
+- can change the EC2 instance type
+- up to 54% off
+
+4. Scheduled Reserved Instances
+
+- launch within time window you reserve
+- when you require a fraction of day/week/month
+
+5. Spot Instances
+
+- can get up to 90% discount
+- can be lost at any point of time
+- cost efficient
+- useful for workloads that are resilient to failure
+- recommended for batch jobs, data analysis, image processing, etc
+- not great for critical jobs or databases
+- great combo: reserved instances for baseline + on demand and spot for peaks
+
+6. Dedicated Hosts
+
+- physical dedicated EC2 server for your use
+- full control of EC2 instance placement
+- visibility into underlying sockets/physical cores of the hardware
+- allocated for your account for 3 year period
+- more expensive
+- used for: software that has a complicated licensing model - BYOL
+- or for regulatory/compliance needs
+
+7. Dedicated Instances
+
+- instances running on hardware dedicated to you
+- may share hardware with other instances in the same account
+- no control over instance placement - can move hardware after start/stop
+
+#
+
+## 30. Spot Instances & Spot Fleet
+
+- can get a discount of up to 90% compared to ondemand
+- you define max spot price and get the instance while current spot price < max
+- the hourly spot price varies based on offer and capacity
+- if current spot price > your max price, you can choose to stop/terminate your instance within a 2 minute grace period
+- option: spot block -> you spot an instance for a specified period of time (1-6 hours) without interruptions
+- rare situations, your instance can be reclaimed
+- used for batch jobs, data analysis, workloads resilient to failures
+- not great for critical jobs or databases
+- terminate spot instances by first canceling the spot request, then terminating the instance
+- otherwise, terminating the instance first will just generate a new spot request (loop slide in the course)
+- spot fleets -> set of spot instances + optionally on demand instances
+- the spot fleet will try to meet the target capacity with price constraints:
+  - define multiple launch pools: instance type, OS, AZ
+  - can have multiple launch pools, so the fleet can choose
+  - spot fleet stops launching instances when reaching capacity or max cost
+- strategies:
+  - lowestPrice: fom the pool with the lost price - cost optimized, short workload
+  - diversified: distributed across all pools - great for availability, long workloads
+  - capacityOptimized: pool with the optimal capacity for the number of instances
+- Spot Fleet allows us to automatically request spot instances with the lowest price
+
+#
+
+## 31. EC2 Instances Launch Types Hands On
+
 #

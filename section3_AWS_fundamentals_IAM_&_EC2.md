@@ -281,4 +281,63 @@
 
 ## 31. EC2 Instances Launch Types Hands On
 
+- browsing the AWS console, EC2 instances to view the diff instance types
+
 #
+
+## 32. EC2 Instance Types Deep Dive
+
+- main types to know
+
+  - R: applications that need lot of RAM - in-memory caches
+  - C: applications that need good CPU - compute/database
+  - M: applications that are balanced - think "medium" - general/web app
+  - I: applications that need good local I/O (instance storage) - databases
+  - G: applications that need a GPU - video rendering/machine learning
+
+  - T2/T3: burstable instances(up to a capacity)
+  - T2/T3-unlimited: unlimited burst
+  - [website to compare instances](www.ec2instances.info)
+
+- Burstable instances(T2/T3)
+  - when machine needs to process something unexpected(spike) it can burst and CPU can be good
+  - they use up "credits"
+  - when out of credits, performance can lower
+  - use CloudWatch to see usage/credit balance
+
+#
+
+## 33. EC2 AMIs
+
+- Amazon Machine Image
+  - ex of base images
+  - ubuntu, Fedora, RedHat, Windows, etc
+- images can be customized at runtime using EC2 User Data
+- but what if we could create our own AMI?
+  - can be built for Linux or Windows machines
+- advantages of a custom AMI?
+  - pre-installed packages that are needed
+  - faster boot times(no need for EC2 User Data)
+  - machine comes configured w/monitoring/enterprise software
+  - security concerns - control over the machines in a network
+  - control of maintenance and updates of AMIs over time
+  - Active Directory Integration out of the box
+  - installing your app ahead of time(faster deploys when auto-scaling)
+  - using someone else's AMI that is optimized for running an app, DB, etc
+- **AMI are built for a specific reason**
+- can be found on Amazon Marketplace
+- Your AMI take space and live in S3
+- private by default and locked for you acct/region
+- you can make them public and share them with other AWS accounts or sell on marketplace
+- billed for the S3 space
+
+#
+
+## 34. EC2 AMI Hands On
+
+- creating an AMI from our first instance
+- installed apache,
+- created index.html -> "hello world"
+
+#
+## 35. Cross Account AMI Copy

@@ -340,4 +340,128 @@
 - created index.html -> "hello world"
 
 #
+
 ## 35. Cross Account AMI Copy
+
+- to copy an AMI from a billing product(a Windows AMI or an AMI from Marketplace), first launch EC2 instance from that AMI, then create an AMI from your instance
+
+#
+
+## 36. EC2 Placement Groups
+
+- sometimes you want to control placement of your EC2 instances
+- strategy can be used to define placement groups
+- when you create a placement group, your specify one of 3 strategies:
+
+1. cluster - low latency instances in a single AZ
+2. spread - spreads instances across underlying hardware(max 7 instances per group per AZ) - critical applications
+3. partition - spreads instances across many diff partitions that rely on diff racks within an AZ. scales to 100s of instances per group. useful for Hadoop, Cassandra, Kafka
+
+- 1. cluster
+
+  - instances are in the same rack, same AZ.
+  - pros: low latency, 10Gbps bandwidth between instances
+  - cons: if rack fails, all instances fail
+  - use cases: big data job that needs to complete fast
+  - application that needs extremely low latency, high network throughput
+
+- 2. spread
+  - oppo of cluster
+  - minimizes failure risk
+  - all EC2 instances are located on diff hardware
+  - pros: spans multi AZs, reduces risk of failure
+  - cons: limited to 7 instances per AZ per placement group
+  - use cases: applications that need to maximize HA
+  - critical apps where each instance must be isolated from failure from each other
+- 3. partition
+  - partitions = think of as racks
+  - up to 7 partitions per AZ
+  - up to 100s of EC2 instances per rack
+  - the instances in the partition do not share racks with the instances in other partitions
+  - a partition failure can affect many EC2 instances, but wont' affect other partitions
+  - EC2 instances get access to the partition information as metadata
+  - use cases: HDFS, Cassandra, Kafka
+
+#
+
+## 37. Elastic Network Interfaces(ENI) with Hands On
+
+- logical component in a VPC that represents a virtual network card
+- ENIs attributes:
+  - primary private v4 address, one more more secondary v4 addresses
+  - one elastic v4 IP per private IP v4
+  - one public IPv4
+  - one or more sec groups
+  - a MAC address
+- you can create ENIs independently and attach them on the fly on EC2 instances for failover
+- bound to a specific AZ
+
+#
+
+## 38. ENI - Extra Reading
+
+- [link for extra reading](https://aws.amazon.com/blogs/aws/new-elastic-network-interfaces-in-the-virtual-private-cloud/)
+
+#
+
+## 39. EC2 Hibernate
+
+- we know we can stop/term instances:
+  - stop: the data on EBS is is kept until next start
+  - terminate: root vol is set to be destroyed, any EBS volumes that are secondary are kept in tact
+- on startup:
+  - first start: OS boots, and EC2 user data script is ran
+  - following starts: OS boots
+  - then application starts, cache warms up, that can take lots of time
+- what hibernate does:
+  - in-memory (RAM) state is preserved
+  - instance boot is much faster- OS is not stopped/restarted
+  - under the hood, RAM state is written to a file in the root EBS volume
+  - root EBS volume must be encrypted
+  - use cases: long running processing
+  - saving RAM state
+  - services that take time to initialize
+- good to know:
+  - supported families: C3, C4, C5, M3, M4, M5, R3, R4, R5
+  - instance RAM size must be less than 150GB
+  - instance size not supported for bare metal instances
+  - AMI - Linux 2, linux AMI, Ubuntu, and Windows
+  - root volume must be EBS, encrypted, not instance store, and large
+  - available for ondemand and reserved instances
+  - an instance can be hibernated no more than 60 days
+
+#
+
+## 40. EC2 Hibernate - Hands On
+
+- demo using an m5 large instance
+- t2.micro not supported
+
+#
+
+## 41. EC2 for Solution Architect
+
+- EC2 instances are billed by the second, t2.micro is free tier
+- on Linux/Mac we use SSH.  Windows < 10 use Putty
+- SSH is on port 22.  lock down the sec group to your IP/trusted IPs
+- timeout issues -> sec group issues
+- permission issues -> run chmod 0400
+- sec groups can reference other sec groups instead of IP ranges  
+- know diff between private,public, elastic IPs
+- you can customize an instance at boot time using EC2 User Data
+- know 4 EC2 launch types
+  - ondemand
+  - reserved
+  - spot
+  - dedicated host
+- know basic types of instances
+  - R,C,M,I,G,T2/T3
+- you can create AMIs to preinstall software on your EC2 -> faster boots
+- AMIs can be copied across regions and accounts
+- EC2 can be placed in groups
+  - cluster
+  - spread
+  - partition
+#
+
+## 42. Quiz 2: EC2 Final Quiz

@@ -95,3 +95,10 @@
 #
 
 ## 45. Classic Load Balancer with Hands On
+- supports:
+  - TCP - layer 4
+  - HTTP, HTTPS
+- health checks are TCP or HTTP based
+- fixed hostname
+  - XXXX.region.elb.amazonaws.com
+#

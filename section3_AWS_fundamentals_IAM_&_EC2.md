@@ -119,7 +119,7 @@
 
 #
 
-## 25 Private vs Public vs Elastic IP
+## 25. Private vs Public vs Elastic IP
 
 - networking has 2 types of IP addresses: v4 and v6
 - v4 allows for 3.7 billion diff addresses in public space
@@ -153,3 +153,38 @@
   - if your machine is stopped, then re-started:
   - **the public ip can change**
   #
+
+## 26. Private vs Public vs Elastic IP Hands On
+
+- stop/start instances will assign you a new IP address
+- Elastic IPs will not change if you stop/start an instance
+
+#
+
+## 27. Install Apache on EC2
+
+- install Apache web server to display a web page
+- create an index.html page
+- ran sudo to give full privileges
+- yum updates to machine
+- installed httpd -> yum install -y httpd.x86_64
+- started the httpd service and remain across reboots
+- ran curl on localhost:80
+- change the SG to allow port 80
+- updated the index.html at /var/www/html
+
+#
+
+## 28. EC2 User Data
+
+- possible to bootstrap EC2 instances using EC2 User Data script
+- bootstrapping means launching commands when an instance starts
+- script runs once at the start of instance
+- use EC2 user data to automate tasks such as:
+  - installing updates
+  - installing software
+  - download any common files from internet
+- script runs with root user
+
+- there's a file w/the commands in the course resources
+#

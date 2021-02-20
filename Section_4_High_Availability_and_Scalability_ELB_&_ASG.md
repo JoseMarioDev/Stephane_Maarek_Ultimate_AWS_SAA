@@ -187,6 +187,42 @@
 
 #
 
-# 50. Elastic Load Balancer - SSL Certifcates
+# 50. Elastic Load Balancer - SSL Certificates
 
--
+- SSL/TLS - Basics
+  - SSL certificate allows traffic between your client and your LB to be encrypted in transit aka in-flight encryption
+  - SSL refers to Secure Socket Layer, used to encrypt connections
+  - TLS refers to Transport Layer Security, which is a newer version
+  - nowadays, TLS certs are mainly used, but people still refer to as SSL
+  - public SSL certs are issued by Certificate Authorities(CA)
+    - ex: Comodo, Symantec, GoDaddy, GlobalSign, Digicert, Letsencrypt, etc
+  - SSL certs have an expiration date you set and must be renewed
+- architecture example:
+  - users connect to LB over HTTPS, LB talks to instances via HTTP over a private VPC
+- load balancer uses an X.509 certificate - that is a SSL/TLS server certificate
+- you can manage certificates using ACM (AWS Certificate Manager)
+- you can create/upload your own certificates alternatively
+- HTTPS listeners:
+  - you must specify a default certificate
+  - you can add an optional list of certs to support multiple domains
+  - clients can use SNI(server name indication) to specify the hostname they reach
+- SNI - sever name indication
+  - solves problem of loading multiple SSL certs onto a web server(to serve multiple websites)
+  - newer protocol, requires the client to indicate the hostname of the target server in the initial SSL handshake
+  - the server will then find the correct certificate, or return the default one
+  - only works for ALB and NLB and CloudFront
+  - does not work for older CLB
+- supports:
+  - CLB
+    - supports only one SSL cert
+    - must use multiple CLBs for multiple hostnames with multiple SSL certs
+  - ALB
+    - supports multiple listeners with multiple SSL certs
+    - uses SNI - server name indication to make it work
+  - NLB
+    - supports multiple listeners with multiple SSL certs
+    - uses SNI to make it work
+- Hands on:
+  - you configure this on the listener when you add a new listener
+
+#

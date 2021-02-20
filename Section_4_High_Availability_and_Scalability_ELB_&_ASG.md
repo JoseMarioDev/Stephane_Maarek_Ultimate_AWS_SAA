@@ -95,10 +95,98 @@
 #
 
 ## 45. Classic Load Balancer with Hands On
+
 - supports:
   - TCP - layer 4
   - HTTP, HTTPS
 - health checks are TCP or HTTP based
 - fixed hostname
   - XXXX.region.elb.amazonaws.com
+
 #
+
+## 46. Application Load Balancer (ALB) with Hands On
+
+- ALB is layer 7 (HTTP)
+- load balancing to multiple HTTP applications across multiple machines(target groups)
+- load balancing to multiple applications on the same machine (ex: containers)
+- support for HTTP/2 and WebSockets
+- supports redirects(HTTP to HTTPS)
+- routing features:
+  - supports routing tables to diff target groups
+  - routing based on path in url -> example.com/users or example.com/posts
+  - routing based on hostname -> one.example.com or other.example.com
+  - routing based on query string, headers -> example.com/users?id=123&order=false
+- ALBs are a great fit for microservices and container based applications(ex: Docker and AWS ECS)
+- has a port mapping feature to redirect to a dynamic port in ECS
+- in comparison, we'd need multiple CLBs per application
+- Target Groups can be composed of:
+  - EC2 instances(can be managed by an ASG - HTTP)
+  - ECS tasks(managed by ECS itself-HTTP)
+  - Lambda functions-HTTP request is translated into a JSON event
+  - IP addresses - must be private IPs
+- ALB can route to multiple target groups
+- Health Checks are at the target group level
+- Good to know:
+  - fixed hostname (xxx.region.elb.amazonaws.com)
+  - the application servers dont see the IP of the client directly. it sees the IP of the load balancer
+  - the true IP of the client is inserted in the header X-Forward-For
+  - we can also get the port of the client in the header X-Forward-Port and protocol in X-Forward-Proto
+
+#
+
+## 47. Network Load Balancer (NLB) with Hands On
+
+- NLBs communicate at Layer 4
+- properties:
+  - forward TCP and UDP traffic to your instance
+  - handle millions of requests per second
+  - less latency(~100ms vs 400ms for ALB)
+- NLBs have one stic IP address per AZ
+- support assigning Elastic IPs - helpful for whitelisting specific IPs
+- NLBs are used for extreme performance, TCP or UDP traffic
+- not included in the free tier
+- Hands On:
+  - similar to setting up an ALB, but:
+  - no SG attached
+  - you have to create a rule in the SG to allow traffic
+
+#
+
+## 48. Elastic Load Balancer - Stickiness
+
+- implement stickiness so the same client is always redirected to the same instance behind a load balancer
+- works for CLB and ALB
+- uses a cookie that has an expiration date you control
+- use case: make sure user doesnt lose his session data
+- enabling stickiness may bring imbalance to the load over the backend EC2 instances
+- Hands On:
+
+  - change stickiness at Target Group level
+
+  #
+
+## 49. Elastic Load Balancer - Cross Zone Load Balancing
+
+- with cross zone load balancing:
+  - each LB instance distributes evenly across all registered instances in all AZs
+- without:
+  - each LB instance distributes requests evenly across the registered instances in its AZ only
+- good ex in lecture - see slide
+- Billing and defaults:
+  - CLB
+    - disabled by default
+    - no charge for inter AZ data is enabled
+  - ALB
+    - always on - cant disable
+    - no charges for inter AZ data
+  - NLB
+    - disabled by default
+    - you pay charges for inter AZ data if enabled
+-
+
+#
+
+# 50. Elastic Load Balancer - SSL Certifcates
+
+-

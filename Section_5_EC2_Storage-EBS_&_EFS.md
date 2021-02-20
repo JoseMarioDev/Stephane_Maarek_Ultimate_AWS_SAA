@@ -1,6 +1,29 @@
 ## 56. EBS Intro
 
--
+- concept:
+  - an EC2 machine loses it root volume(main drive) when it is manually terminated
+  - unexpected terminations might happen from time to time(AWS will email you)
+  - sometimes, you need a way to store your instance data elsewhere
+  - an EBS(elastic block store) volume is a network drive you can attach to your instances while they run
+  - it allows your instances to persist data
+- what is an EBS volume?
+  - it's a network drive(i.e. not a physical drive)
+  - it uses the network to communicate with the instance, which means there might be a bit of latency
+  - it can be detached from the EC instance and attached to another one quickly
+  - it is locked to an Availability Zone
+    - meaning it's AZ scoped
+    - to move a volume across AZs, you first need to make a snapshot
+  - have to provision a capacity(size in GBs and IOPS)
+    - you get billed for all the provisioned capacity, not just what you're using
+    - you can increase over time
+- EBS volume types
+  - GP2(SSD): general purpose SSD volume that balances price and performance for a wide variety of workloads
+  - IO 1(SSD): Highest peform SSD for mission critical low latency or high throughput workloads
+  - ST 1(HDD): low cost HDD volume designed for frequent accessed, throughput intensive workloads
+  - SC1(HDD: lowest cost HDD volume designed for less frequently accessed workloads
+- EBS volumes are characterized in size, throughput -> IOPS - input output ops per second
+- when in doubt, consult AWS documentaion, it's good!
+- only GP2 and IO 1 can be used at boot volumes
 
 #
 

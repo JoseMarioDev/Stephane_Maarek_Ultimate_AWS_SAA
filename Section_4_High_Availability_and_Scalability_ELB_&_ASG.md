@@ -226,3 +226,16 @@
   - you configure this on the listener when you add a new listener
 
 #
+
+## 51. Elastic Load Balancer - Connection Draining
+
+- naming:
+  - in CLBs known as Connection draining
+  - in Target Groups(ALB and NLB) known as Deregistration Delay
+- it the time it takes to complete "in-flight requests" while the instance is de-registering or unhealthy
+- stops sending requests to the instance which is de-registering
+- between 1 - 3600 seconds, default is 300 seconds
+- can be disabled, set value to 0
+  set to a low value if your requests are short
+
+#

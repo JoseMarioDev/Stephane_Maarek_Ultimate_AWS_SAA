@@ -239,3 +239,134 @@
   set to a low value if your requests are short
 
 #
+
+## 52. Auto Scaling Groups (ASG) Overview
+
+- What is an ASG?
+- a way to create and get rid of servers quickly to manage the changing load of your website/app
+- Goals of an ASG:
+  - scale out(add EC2 instances) to match an increase workload
+  - scale in (remove EC2 instances) to match a decrease workload
+  - ensure we have a min/max number of instances running
+  - automatically register new instances to a LB
+- parameters:
+  - minimum size - at least how many instances I want running
+  - desired capacity - how many I want running/are currently running
+  - max capacity - how many I want running at the most
+- ASG in AWS w/Load Balancer
+- the load balancer can automatically connect to these instances, direct traffic, and perform health checks
+- ASG and ELB work hand-in-hand
+- ASGs have the following attributes:
+  - a launch configuration
+    - AMI + instance type
+    - EC2 User Data
+    - EBS Volumes
+    - Security Groups
+    - SSH Key Pair
+  - min size/max size/initial capacity/desired capacity
+  - network + subnet information
+  - load balancer information
+  - scaling policies - what triggers a scale out/scale in
+- Auto scaling alarms
+  - possible to scale an ASG based on CloudWatch alarms
+  - an alarm monitors a metric(such as Average CPU usage)
+  - metrics are computed for the overall ASG instances
+  - Based on an Alarm we can:
+    - create scale out policies - increase num of instances
+    - create scale in policies - decrease num of instances
+- ASG new rules:
+  - now possible to define "better" auto scaling rules that are directly managed by EC2
+    - target avg CPU usage
+    - num of requests on the ELB per instance
+    - avg network in
+    - avg network out
+  - these rules are easier to setup and can make more sense
+- auto scaling custom metric
+  - we can auto scale based on a custom metric(ex: num of connected users)
+  - send custom metric from app on EC2 to CloudWatch
+  - create CloudWatch alarm to react to low/high values
+  - use CloudWatch alarm as the auto scaling policy for ASG
+- ASG Brain Dump:
+  - scaling policies can be on CPU, network, or even custom metrics or based on a schedule if you know your users patterns
+  - ASG uses Launch Configurations or Launch Templates(newer - recommended)
+  - to update an ASG, you must provide a new Launch Configuration/Launch Template
+  - IAM roles attached to an ASG will get assigned to EC2 instances
+  - ASGs are free. You pay for the underlying resources being launched
+  - having instances under an ASG means that if they get terminated for whatever reason, the ASG will automatically create new ones as a replacement
+    ASGs can terminate an instance marked as unhealthy by an ELB(and hence replace them)
+
+#
+
+## 53. Auto Scaling Groups Hands On
+
+- choose a launch template or configuration
+- templates are newer
+- templates describe how to create EC2 instances
+- select the instance type you want ex t2.micro
+- select key/pair
+- select VPC
+- select SG
+- select storage
+- at the bottom, User Data
+- click create
+- purchase options - ondemand or spot fleet
+- select subnets
+- specify load balancing/health checks
+- choose target group to add instances to
+- health checks
+  - 2 types EC2 and ELB
+- group size and scaling policies
+  - min/max/desired
+  - scaling policies
+
+#
+
+## 54. Auto Scaling Groups - Scaling Policies
+
+- diff types of scaling policies:
+  1. target tracking scaling
+  - most simple and easy to setup
+  - ex: I want the avg CPU usage to stay around 40%
+  2. Simple/step scaling
+  - when a CloudWatch alarm is triggered(ex: CPU usage > 70%) add 2 instances
+  - when a CloudWatch alarm is triggered(ex: CPU usage < 30%) remove 1 instance
+  3. Scheduled Actions
+  - anticipate based on known usage patterns
+  - ex: increase the min capacity to 10 at 5pm on Fridays
+- scaling cooldowns
+  - cooldown period helps to ensure ASG doesn't launch/terminate instances before the prev scaling activity kicks in
+  - in addition to the default cooldown, we can create cooldowns that apply to a specific simple scaling policy
+  - a scaling specific cooldown overrides the default cooldown period
+  - common use case: scale-in policy that terminates instances based on a specific criteria. yo can use a lower cooldown period to reduce costs
+  - if your app is scaling up/down multiple times each hour, modify the ASG cool down timers and the CloudWatch Alarm Period that triggers the scale in
+
+#
+
+## 55. Auto Scaling Groups - for Solutions Architects
+
+- things to know:
+  - ASG Default Termination Policy(simplified)
+    - find the AZ which as the most num of instances
+    - if there are multiple instances in the AZ to choose from, delete the one with the oldest launch configuration
+    - ASG tries to balance the num of instances across AZ by default
+  - Lifecycle Hooks
+    - by default as soon as an instance is launched it is available
+    - you have ability to perform extra steps while it's in pending/terminating state
+    - useful for logs
+  - launch templates vs launch configuation
+    - both:
+      - define your instances
+    - configuration(legacy)
+      - must be recreated every time
+    - templates(newer)
+      - can have multiple versions
+      - create parameter subsets(partial configuration for reuse and inheritance)
+      - provision using both ondemand and spot instances(or mix)
+      - can use T2 unlimited burst feature
+      - newer, recommended by AWS going forward
+
+#
+
+## 56. Quiz 3: Fundamentals 2 Quiz
+
+#

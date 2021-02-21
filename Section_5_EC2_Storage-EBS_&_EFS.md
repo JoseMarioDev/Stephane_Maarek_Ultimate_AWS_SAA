@@ -41,7 +41,44 @@
 
 ## 58. EBS Volume Types Deep Dive
 
--
+- EBS Volume Types and use cases:
+  - GP2
+    - recommended for most workloads
+    - system boot volumes
+    - virtual desktops
+    - low latency interactive apps
+    - development and test environments
+    - range in size from 1gb to 16tb
+    - small gp2 vols can burst IOPS to 3000
+    - max IOPS is 16,000
+    - 3 IOPS per GB, means at 5,334GB we are at max IOPS
+  - IO1
+    - critical business applications that require sustained IOPS performance or more than 16k IOPS per volume(the gp2 limit)
+    - large database workloads such as:
+      - MongoDB, Cassandra, Microsoft SQL Server, MySQL, PostgreSQL, Oracle
+    - 4gb to 16tb
+    - IOPS is provisioned(PIOPS) - min 100 max 64,000(Nitro instances) else max is 32,000
+    - max ratio of PIOPS to requested volume size is 50:1
+  - ST1
+    - streaming workloads requiring constant, fast throughput at a low price
+    - big data warehouses, log processing
+    - Apache Kafka
+    - cannot be root volume
+    - 500gb - 16tb
+    - max IOPS is 500
+    - max throughput of 500mb/s - can burst
+  - SC1
+    - throughput-oriented storage for large volumes of data that is infrequently accessed
+    - scenarios where the lowest storage cost is important
+    - cannot be boot volume
+    - 500gb - 16tb
+    - max IOPS is 250
+    - max throughput of 250 mb/s - can burst
+- summary:
+  - GP2 general purpose volumes - cheap
+  - IO1 provisioned IOPS - expensive
+  - ST1 - throughput optimized HDD
+  - SC1 - cold HDD - infrequently accessed data
 
 #
 

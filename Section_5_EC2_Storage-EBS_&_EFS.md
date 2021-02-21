@@ -29,7 +29,13 @@
 
 ## 57. EBS Intro Hands On
 
--
+- add an EBS volume when creating an EC2 instance, in addition to the root volume
+- attach a sec group
+- launch it
+- SSH into instance
+- using "lsblk" command, you see all drives
+- need to mount/format the new EBS volume to access it
+- look at documentation for instructions on how to do that
 
 #
 

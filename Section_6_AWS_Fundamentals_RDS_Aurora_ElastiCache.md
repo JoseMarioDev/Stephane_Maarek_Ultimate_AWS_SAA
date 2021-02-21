@@ -145,7 +145,23 @@
 
 ## 72. Aurora Overview
 
--
+- AWS propriety
+- compatible with mySQL and PG
+- "cloud optimized" claims 5x performance improvement over MySQL and 3x improvement over PG
+- storage automatically grows in increments of 10gb up to 64tb
+- Aurora can have 15 replicas while mysql has 5. replication process is faster
+- failover in Aurora is instantaneous. HA native
+- cost more then RDS - 20% more, but is efficient
+- Aurora HA and read scaling
+  - 6 copies of your data across 3 AZs
+  - 4 copies out of 6 needed for writes
+  - 3 copies out of 6 needed for reads
+  - self healing with peer-to-peer replication
+  - storage is striped across 100s of volumes
+- one Aurora instance takes writes(master)
+- automated failover for master in less than 30 seconds
+- can have master plus up to 15 read replicas to serve reads
+- support for cross region replication
 
 #
 

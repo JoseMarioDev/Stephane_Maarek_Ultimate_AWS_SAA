@@ -201,30 +201,101 @@
     - up to 16 read replicas per secondary region
     - help for decreasing latency
     - promoting of another region(for DR) has a RTO of < 1 minute
-    
+
 #
 
 ## 73. Aurora Hands On
 
--
+- RDS console
+- standard create
+- choose Aurora with either MySQL or PG compatibility
+- choose version
+- location - regional/global
+- database features - 4 modes(config writers/readers)
+- template - prod/test
+- settings
+  - identifier
+  - credential settings
+  - db instance size
+  - availability and durability
+    - multi-AZ deployment
+  - connectivity
+    - vpc
+    - subnet
+    - sec group
+  - encryption
+  - backtrack
+  - deletion protection
 
 #
 
 ## 74. ElastiCache Overview
 
--
+- used to get managed cache - Redis or MemCached
+- caches are in-memory databases with really high performance, low latency
+- helps reduce load off of db for read intensive workloads
+- helps make your application stateless
+- write scaling using sharding
+- read scaling using read replicas
+- multiAZ with failover capacity
+- AWS takes care of OS maintenance/patching, optimizations, setup, configuration, monitoring, failure recovery and backups
+- architecture:
+  - app queries ElastiCache, if not there(miss) gets from RDS and stores in ElastiCache
+  - helps relieve load in RDS
+  - cache must have an invalidation strategy to make sure only the most current data is there
+- common use case:
+  - user sessions
+  - user logs into any instances of the app
+  - app writes session data to ElastiCache
+  - user hits a diff instance
+  - instance retrieves session data from ElastiCache and the user is already logged in
+- Redis vs MemcacheD
+- Redis
+  - multi AZ with auto failover
+  - read replicas to scale reads and have HA
+  - data durability using AOF persistence
+  - backup and restore features
+- memcacheD
+  - multinode for partitioning data(sharding)
+  - non persistent
+  - no backup and restore
+  - multi-threaded architecture
 
 #
 
 ## 75. ElastiCache Hands On
 
--
+- ElastiCache console
+- choose engine redis vs memcached
+- name
+- desc
+- port
+- node type
+- num of replicas
+- multi-AZ setting
+- subnet group
+- sec group
+- encryption
+- backups
+- maintenance
 
 #
 
 ## 76. ElastiCache for Solution Architect
 
--
+- cache security
+  - support SSL in flight
+  - do not support IAM auth
+  - IAM policies are only used for AWS api-level security
+- Redis AUTH
+  - you can set a password/token when you create Redis cluster
+  - extra level of security for your cache on top of sec groups
+- memcacheD
+  - supports SASL based auth - advanced
+- patterns:
+  - lazy loading - all the read data is cached, can become stale
+  - write through - adds or update data in the cache when written to a dB(no stale data)
+  - session store - store temporary session data in a cache - using TTL features
 
 #
 
@@ -236,6 +307,37 @@
 
 ## 77. List of Ports to be familiar with
 
--
+- List of Ports to be familiar with
+  Here's a list of standard ports you should see at least once. You shouldn't remember them (the exam will not test you on that), but you should be able to differentiate between an Important (HTTPS - port 443) and a database port (PostgreSQL - port 5432)
+
+Important ports:
+
+FTP: 21
+
+SSH: 22
+
+SFTP: 22 (same as SSH)
+
+HTTP: 80
+
+HTTPS: 443
+
+vs RDS Databases ports:
+
+PostgreSQL: 5432
+
+MySQL: 3306
+
+Oracle RDS: 1521
+
+MSSQL Server: 1433
+
+MariaDB: 3306 (same as MySQL)
+
+Aurora: 5432 (if PostgreSQL compatible) or 3306 (if MySQL compatible)
+
+Don't stress out on remember those, just read that list once today and once before going into the exam and you should be all set :)
+
+Remember, you should just be able to differentiate an "Important Port" vs an "RDS database Port".
 
 #

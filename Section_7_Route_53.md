@@ -34,3 +34,32 @@
 - command dig xxxx.com will give you more info
 
 #
+
+## 80. Route 53 - EC2 Setup
+
+- creating a bunch of EC2 instances in diff regions
+- create a load balancer - ALB
+- add it the 3 AZs
+
+## 81. Route 53 - TTL
+
+- a way for browsers and clients to cache a response from a DNS query
+- browser requests an ip from R53. R53 responds with the A record and a TTL
+- mandatory for each DNS record
+
+#
+
+## 82. Route 53 CNAME vs Alias
+
+- AWS resources(load balancer, CloudFront...) exose an AWS hostname:
+  - ex: lb1-1234-useast2elb.amazon.aws.com and you want myapp.mydomain.com
+- CNAME:
+  - points a hostname to any other hostname (app.mydomain.com -> blbah.anything.com)
+  - only for non root domains(ex something.mydomain.com)
+- ALIAS:
+  - points a hostname to an AWS resource (app.mydomain.com -> blah.amazonaws.com)
+  - works for root domain and non root domain
+  - free of charge
+  - native health checks
+
+#

@@ -162,7 +162,46 @@
 - automated failover for master in less than 30 seconds
 - can have master plus up to 15 read replicas to serve reads
 - support for cross region replication
-
+- Aurora DB Clusters:
+  - there is a writer endpoint(dns name) that points to the master for read/writes
+  - there is a reader endpoint(dns name) that handles connection load balancing for all the reader replicas
+  - reader replicas can auto scale up to 15 read replicas
+  - shared volume that auto expands 10gb to 64tb
+  - features:
+    - automatic failover
+    - backup and recovery
+    - isolation and security
+    - industry compliance
+    - push button scaling
+    - automated patching with zero downtime
+    - advanced monitoring
+    - routine maintenance
+    - backtrack: restore data at any point of time w/o using backup
+  - security:
+    - same as RDS because they use the same engine
+    - encryption at rest using KMS
+    - automated backups, snapshots, and replicas are also encrypted
+    - encryption in-flight using SSL(same process as MySQL or Postgres)
+    - possibility to authenticate using IAM token(same as RDS)
+    - you are responsible for protecting the instance with security groups
+    - you can't SSH
+  - Aurora Serverless
+    - automated database instantiation and autoscaling based on actual usage
+    - good for infrequent, intermittent, or unpredictable workloads
+    - no capacity planning needed
+    - pay per second, can be more cost effective
+    - managed by a proxy fleet(managed by Aurora)
+  - Global Aurora - 2 methods
+    - Aurora cross region read replicas
+      - useful for DR
+      - simple to implement - just put read-replica in another region
+    - Aurora Global Database(recommended)
+    - 1 primary region where read/writes happen
+    - 5 secondary read only regions for replication. lag is less than 1 sec
+    - up to 16 read replicas per secondary region
+    - help for decreasing latency
+    - promoting of another region(for DR) has a RTO of < 1 minute
+    
 #
 
 ## 73. Aurora Hands On

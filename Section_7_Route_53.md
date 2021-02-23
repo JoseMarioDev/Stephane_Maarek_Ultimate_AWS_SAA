@@ -63,3 +63,99 @@
   - native health checks
 
 #
+
+## 83. Routing Policy - Simple
+
+- use when you need to redirect to a single resource
+- you cant attach health checks to simple routing policy
+- if multiple values are returned, a random one is chose by the client
+- you do this by adding multiple IP addresses when setting the A record
+
+#
+
+## 84. Routing Policy - Weighted
+
+- control the % of the requests that go to a specific endpoint
+  - ex: three instances - one has 70%, one has 20%, one has 10%
+- helpful to test certain percentage of traffic on new app version for example
+- helpful to split traffic between 2 regions
+- can be associated with health checks
+
+#
+
+## 85. Routing Policy - Latency
+
+- redirected to the server that has the least latency close to the us
+- super helpful when latency of users is a priority
+- latency is evaluated in terms of user to designated AWS region
+- Germany may be directed to the US (if thats the lowest latency)
+
+#
+
+## 86. Route 53 Health Checks
+
+- unhealthy if fails X amount of health checks - default is 3
+- default health check interval is 30s. can set to 10s for a higher cost
+- about 15 health checkers will check the endpoint health
+- default is one req every 2 seconds on average(assume 30s default)
+- can have HTTP, TCP, HTTPS, health checks(no SSL verifcation)
+- possibility of integrating the health check with CloudWatch
+- health checks can be linked to Route53 DNS queries
+
+#
+
+## 87. Routing Policy - Failover
+
+- ex: 2 instances:
+  - 1 primary
+  - 1 secondary
+- R53 sends DNS requests from browser to primary until it fails health checks
+  - if it fails, sends requests to the secondary
+- set primary or secondary in the record set routing policy in R53
+- must associate with health check
+
+#
+
+## 88. Routing Policy - Geolocation
+
+- routing based on user location
+- create a default policy in case there is no match
+- routing based on user's location, diff from latency
+- choose continent/country when creating your record set
+
+#
+
+## 89. Routing Policy - Multi-Value
+
+- route traffic to multiple resources
+- want to associate R53 health checks w/records
+- up to 8 healthy records are returned for each multi-value query
+- multi-value is not a substitute for having an ELB
+
+#
+
+## 90. 3rd Party Domains & Route 53
+
+- R53 as a Registrar
+  - a domain name registrar is an org that manages the reservation of internet domain names
+  - ex: godaddy, google domains, etc
+- domain registration is diff from DNS
+- 3rd party registrar with AWS Route 53
+  - if you buy your domain from another website
+  - create a hosted zone in R53
+  - update NS on 3rd party site to use R53 name servers
+  - domain registrar is not DNS, but each domain registrar usually comes with some DNS features
+
+#
+
+## 91. Section Cleanup
+
+- deleting all the records from the hands on
+
+#
+
+## Quiz 6: Route 53 quiz
+
+-
+
+#

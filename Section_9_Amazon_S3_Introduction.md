@@ -83,12 +83,14 @@
 ## 104. S3 Encryption
 
 - 4 methods of enrcrypting objects in S3
+
 1. SSE-S3: encrypts S3 objects using keys handled and managed by AWS
 2. SSE-KMS: leverage AWS Key Management Service to manage encryption keys
 3. SSE-C: when you want to manage your own encryption keys
 4. client side encryption
 
 - SSE-S3:
+
   - encryption using keys handled/managed by S3
   - object encryption is server side
   - AES-256 encryption type
@@ -123,10 +125,12 @@
 #
 
 ## 105. S3 Encrpytion - Hands On
+
 - when you upload an object
 - additonal settings -> server side encrpytion settings
 - can specify a default encrpytion mechanism for the bucket
-- SSE-C can only be done through the CLI 
+- SSE-C can only be done through the CLI
+
 #
 
 ## 106. S3 Security & Bucket Policies
@@ -168,35 +172,65 @@
   - user security
     - MFA delete - MFA may be required to delete objects in versioned buckets
     - pre-signed URL - urls that only valid for a short time. give users temp access - think video service on demand
+
 #
 
 ## 107. S3 Bucket Policies Hands On
 
--
+- S3 console
+- permissions
+- bucket policy
+- create policy to prevent data that isnt encrypted
+- using policy generator
+- ARN bucket name followed by /\* for all objects inside that bucket
+- add condition, key, and value
 
 #
 
 ## 108. S3 Websites
 
--
+- can host static website and have them accessible to WWW
+- if you get a 403(forbidden)error, make sure the bucket policy allows public reads
+- upload index.html and error.html
+- properties -> static website hosting
 
 #
 
 ## 109. S3 CORS
 
--
+- an origin is a scheme(protocol), host(domain), and port
+- eg www.website.com protocol is http, host is website.com port is 80
+- cors means cross origin resource sharing
+- web based mechanism to allow requests to other origins while visiting the main origin
+- same origin: www.website.com/app1 and www.website.com/app2
+- diff origin: www.website.com and www.other.site.com
+- the requests wont be fulfilled unless the other origin allows for requests using cors headers
+- S3 cors
+  - if a client does a cross-origin request on our S3 bucket, we need to enable the correct cors headers
+  - popular exam question
+  - you can allow for a specific origin or for \* (all origins)
 
 #
 
 ## 110. S3 CORS Hands On
 
--
+- cors settings
+- create new bucket, allow cors on that bucket
+- web browser sends request to 1st bucket, is directed to 2nd bucket
+- because cors is enabled on the 2nd bucket, we can successfully load page
 
 #
 
 ## 111. S3 Consistency Model
 
--
+- uses eventual consistency
+- read after write consistency for PUTS of new objects
+  - as soon as object is written, we can retrieve it
+  - PUT 200 -> GET 200
+- eventual consistency for DELETES and PUTS of existing objects
+  - PUT 200 -> PUT 200 -> GET 200 but might retrieve older version
+  - if we delete an object, we might still be able to retrieve it for a short time
+- there is no way to request "strong consistency"
 
 #
 

@@ -23,7 +23,28 @@
 
 ## 94. MyClothes.com
 
-- stateful web application
+- adds on the arch from previous lecture
+- can use ELB stickiness
+- introduces Elaticache for storing user sessions
+- can also store them in DynamoDB
+- introduces RDS for storing user info(address, etc)
+- read replicas to improve performance
+- MultiAZ standby for DR
+-
+
+#
+
+## 95. MyWordPress.com
+
+- adds Aurora DB to have easy MultiAZ and read-replica
+- storing data in EBS is okay for single instance but:
+- storing data in EFS is better for distributed applications when we have multiple instances/AZ
+-
+
+#
+
+## 96. Instantiating Applications Quickly
+
 -
 
 #

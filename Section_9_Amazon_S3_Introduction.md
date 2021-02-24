@@ -68,6 +68,67 @@
 
 ## 103. S3 Versioning - Hands On
 
+- properties tab
+- enable versioning
+- toggle "List versions" slider
+- every time we upload a file, it keeps the previous version and assigns a diff version ID
+- try to delete file, adds delete maker
+  - doesnt actually delete file
+- restoring file -> delete the delete maker
+- to perm delete, select the object and actions -> delete
+
+#
+
+## 104. S3 Encryption
+
+-
+
+#
+
+## 105. S3 Encryption - Hands On
+
+-
+
+#
+
+## 106. S3 Security & Bucket Policies
+
+-
+
+#
+
+## 107. S3 Bucket Policies Hands On
+
+-
+
+#
+
+## 108. S3 Websites
+
+-
+
+#
+
+## 109. S3 CORS
+
+-
+
+#
+
+## 110. S3 CORS Hands On
+
+-
+
+#
+
+## 111. S3 Consistency Model
+
+-
+
+#
+
+## Quiz 8: AWS S3 Quiz
+
 -
 
 #

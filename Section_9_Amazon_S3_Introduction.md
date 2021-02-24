@@ -122,10 +122,52 @@
 
 #
 
+## 105. S3 Encrpytion - Hands On
+- when you upload an object
+- additonal settings -> server side encrpytion settings
+- can specify a default encrpytion mechanism for the bucket
+- SSE-C can only be done through the CLI 
+#
+
 ## 106. S3 Security & Bucket Policies
 
--
-
+- S3 Security
+  - user based:
+    - IAM policies: which api calls should be allowed for a specific user from IAM console
+  - resource based:
+    - bucket policies - bucket wide rules from the S3 console - allow cross account
+    - object access control list - finer grain
+    - bucket access control list - less common
+  - an IAM principal(aka user,group,role) can access an S3 object if:
+    - the user IAM permissions allow it or the resouce policy allows it and:
+    - there is no explicit deny
+- S3 bucket policies:
+  - JSON based
+    - resouces: buckets and objects
+    - actions: set of API to allow or deny
+    - effect: allow/deny
+    - principal: the account or user to apply the policy to
+  - use S3 bucket policies to:
+    - grant public access to the bucket
+    - force objects to be encrypted at upload
+    - grant access to another account(cross account)
+- bucket settings for block public access
+  - 4 settings
+    - new ACLs
+    - new public bucket or access point policies
+    - any ACLs
+    - block any public and cross acct access to buckets/objects through any public bucket or access point policies
+  - settings created to prevent data leaks
+  - settings can be set at the account level
+- security other:
+  - networking
+    - supports VPC endpoints - for instances in VPC without internet access
+  - logging and auditing:
+    - S3 access logs can be stored in other S3 bucket
+    - API calls can be logged in AWS Cloudtrail
+  - user security
+    - MFA delete - MFA may be required to delete objects in versioned buckets
+    - pre-signed URL - urls that only valid for a short time. give users temp access - think video service on demand
 #
 
 ## 107. S3 Bucket Policies Hands On

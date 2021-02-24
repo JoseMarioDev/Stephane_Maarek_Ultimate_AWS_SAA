@@ -75,19 +75,50 @@
 - try to delete file, adds delete maker
   - doesnt actually delete file
 - restoring file -> delete the delete maker
+
 - to perm delete, select the object and actions -> delete
 
 #
 
 ## 104. S3 Encryption
 
--
+- 4 methods of enrcrypting objects in S3
+1. SSE-S3: encrypts S3 objects using keys handled and managed by AWS
+2. SSE-KMS: leverage AWS Key Management Service to manage encryption keys
+3. SSE-C: when you want to manage your own encryption keys
+4. client side encryption
 
-#
+- SSE-S3:
+  - encryption using keys handled/managed by S3
+  - object encryption is server side
+  - AES-256 encryption type
+  - can be HTTP or HTTPS
+  - must set the header: "x-amz-server-side-encryption":"AES256"
 
-## 105. S3 Encryption - Hands On
-
--
+- SSE-KMS:
+  - encryption using keys handled/managed by AWS
+  - KMS advantages: user control and audit trail
+  - object encryption is server side
+  - can be HTTP or HTTPS
+  - must set header: "x-amz-server-side-encryption": "aws:kms"
+- SSE-C:
+  - server side encryption using data keys fully managed by the customer
+  - Amazon S3 does not store the encryption key you provide
+  - HTTPS must be used
+  - encryption key must be provided in HTTP headers for every HTTP request made
+  - good illustration in the lesson
+- client side encrpytion
+  - encryption is handled/managed fully by the client prior to uploading to S3
+  - can use libraries such as Amazon S3 Encryption Client
+  - clients must encrpyt data prior to sending to S3
+  - clients must decrpyt data themselves when retrieving from S3
+- encryption in transit(SSL/TLS)
+  - Amazon S3 exposes:
+    - HTTP endpoint: not encrypted
+    - HTTPS endpoint: encrpytion in flight
+  - free to use either, but HTTPS is recommended
+  - most clients would use the HTTPS endpoint by default
+  - HTTPS is mandatory for SSE-C
 
 #
 

@@ -160,25 +160,66 @@
 
 ## 133. S3 Lifecycle Rules
 
--
+- you can transition objects between storage clasess
+- for infrequently accesed objects, move them to Standard IA
+- for objects you dont need in real time, move them to Glacier or Glacier Deep Archive
+- moving objects can be automated using a lifecycle configuration
+- S3 Lifecycle Rules
+  - transition actions: defines when objects are moved to another storage class
+    - ex: move object to standard IA 60 days after creation
+    - ex: move to glacier for archiving after 6 months
+  - expiration actions: config objects to expire (delete) after a certain time
+    - ex: access logs delete after 365 days
+    - can be used to delete old versions of files(if versioning is enabled)
+    - can be used to delete incomplete multipart uploads
+  - rules can be created for a certain prefix(folder)
+  - rules can be created for a certain tag(ex:finance dept)
+
 
 #
 
 ## 134. S3 Lifecycle Rules - Hands On
 
--
+- management tab -> lifecycle rules
+- create rule
+- adjust settings based on your need
+- 5 lifecycle rule actions to choose from
 
 #
 
 ## 135. S3 Performance
 
--
+- by default S3 scales to high requests and has low latency, 100-200ms
+- no limit to the number of prefixes(folders) in a bucket
+- your app can get at least 3500 put/copy/post/delete and 5500 get/head requests per second per prefix in a bucket
+- S3 KMS limitation
+  - if you use SSE-KMS you may be impacted by KMS limits
+  - when you upload it calls the generatedatakey KMS api
+  - download calls the decryptkmskey api
+  - counts towards the KMS quota per second
+  - as of today you cannot request a quota increase for KMS
+- S3 performance
+  - use multi-part upload
+    - recommended for files > 100mb
+    - must use for files > 5gb
+    - can parallelize uploads (speeds up xfers)
+  - S3 Transfer Acceleration
+    - increase xfer speed by xferring file to AWS edge location which will forward the data to the S3 bucket in target region
+    - compatible with multi-part upload
+  - S3 Byte Range Fetches for GETs
+    - parallelize GETs by requesting specific byte ranges
+    - better resilience in case of failures
+    - can be used to speed up downloads
+    - can be used to retrieve only partial data(ex: head of a file)
 
 #
 
 ## 136. S3 Select & Glacier Select
 
--
+- retrieve less data using SQL by performing server side filtering
+- can filter by rows/columns(simple SQL statements)
+- less network xfer; less cpu cost client-side
+- filtering of data server side to get less data back
 
 #
 

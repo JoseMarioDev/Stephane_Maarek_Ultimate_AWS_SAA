@@ -225,31 +225,60 @@
 
 ## 137. S3 Event Notifications
 
--
-
+- create event notification rules
+- trigger some kind of event to SNS, SQS, or Lambda
+- if 2 writes are made to a nonversioned object, you may get one notication
+- to ensure all notifications enable versioning
 #
 
 ## 138. S3 Event Notifications - Hands On
 
--
+- create bucket
+- properties -> event notifications
+- create event notification
+- general config
+- event type
+- choose destination - lambda function, SNS, SQS
+
 
 #
 
 ## 139. Athena Overview
 
--
+- serverless service to perform analytics directly against S3 files
+-  normally you upload files from S3 to a db
+- with Athena, you leave files in S3
+- and query against them
+- uses SQL
+- charged per query and data scanned
+- supports many files types - csv, json, orc, etc
+- use cases: business intelligence, analytics, reporting, vpc flow logs, elb logs, cloudtrail, etc
+- analyze data directly on S3 -> athena
 
 #
 
 ## 140. Athena Hands On
 
--
+- athena console
+- setup query in Athena
+- select bucket to run query on
+- select location for query results
+- create db to store queries
+- create tables 
+- run queries on data
 
 #
 
 ## 141. S3 Lock Policies & Glacier Vault Lock
 
--
+- S3 object lock
+  - adopt WORM model
+    - write once read many
+    - block an object version deletion for a specified amt of time
+- glacier vault lock
+  - worm model
+  - lock policy for future edits - can't be changed
+  - helpful for compliance and data retention
 
 #
 

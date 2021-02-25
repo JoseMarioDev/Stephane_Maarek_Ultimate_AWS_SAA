@@ -89,7 +89,61 @@
 
 ## 131. S3 Storage Clases + Glacier
 
-- 
+- storage classes
+  - S3 standard
+  - S3 Infrequent Access
+  - S3 One Zone Infrequent Access
+  - S3 Intelligent Tiering
+  - Glacier
+  - Glacier Deep Archive
+
+- 1. S3 Standard - general purpose
+  - high durability of objects across multiple AZs - 11 nines.  99.999999999%
+  - 99.99% availability over a given year
+  - sustain 2 concurrent facillity failure
+  - use cases: big data analytics, mobile and gaming apps, content distribution
+- 2. S3 Standard - infrequent Access
+  - suitable for data that is less frequently accessed, but requires rapid access when needed
+  - high durability - 11 nines
+  - 99.9% availability
+  - lower cost compared to S3 Standard
+  - sustain 2 concurrent facility failures
+  - use cases: data store for DR, backups
+- 3. S3 One Zone - Infrequent Access
+  - same as IA, but data is stored in a single AZ
+  - high durability - 11 nines of objects in one AZ, but data is lost if AZ is destroyed
+  - 99.5% availability
+  - low latency, high throughput performance
+  - supports SSL for data in transit and at rest
+  - lower cost compared to IA - 20% cheaper
+  - use cases: secondary backup copies of onprem data, or storing data you can recreate
+- 4. S3 Intelligent Tiering
+  - same latency and high throughput of S3 Standard
+  - small monthly monitoring and auto-tiering fee
+  - automatically move objects between 2 access tiers based on changing access patterns(S3 General and IA)
+  - durability - 11 nines mulitple AZs
+  - resilient against events that impact an entire AZ
+  - designed for 99.9% availiability over a given year
+- 5. Amazon Glacier
+  - low cost object storage for archiving/backup
+  - data is retained long term(decades)
+  - alternative to onprem magnetic tape
+  - durabilility - 11 nines
+  - cost per storage per month $.004/gb + retrieval cost
+  - each item in Glacier is called an Archive(not object) up to 40TB
+  - archives are stored in vaults
+  - 3 retrieval options(wait times)
+    - expedited 1-5 minutes
+    - standard 3-5 hours
+    - bulk 5-12 hours
+  - min storage duration is 90 days
+- 6. Amazon Glacier Deep Archive
+  - long term storage - even cheaper
+  - wait times
+    - standard 12 hours
+    - bulk 48 hours
+  - min storage duration is 180 days
+- good chart on the slide
 
 #
 

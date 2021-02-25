@@ -149,7 +149,12 @@
 
 ## 132. S3 Storage Classes + Glacier - Hands On
 
--
+- create bucket
+- when uploading an object,
+  - upload options
+  - storage class options
+  - must restore any objects in Glacier
+  - can edit storage class and change it
 
 #
 

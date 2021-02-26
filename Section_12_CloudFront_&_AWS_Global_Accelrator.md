@@ -79,6 +79,80 @@
 
 ## 144. Cloudfront Signed URL/Cookies
 
-- 
+- you want to distribute paid shared content to premium users over the world
+- we can use CF signed url/cookie. we attach a policy with
+  - includes url expiration
+  - includes ip ranges to access data from
+  - trusted signers (which AWS accts can create signed URLs)
+- how long should the URL be valid for
+  - shared content(movie,music): make it short
+  - private content(private to user): you can make it lat for years
+- signed URL: access to individual files(one signed URL per file)
+- signed cookies: access to multiple files(one signed cookie for many files)
+- CF signed URL vs S3 presigned URL
+  - CF signed URL
+    - allow access to path, no matter the origin
+    - account wide key pair only the root can manage it
+    - can filter by IP, path, date, expiration
+    - can leverage caching features
+  - S3 presigned URL
+    - issue a request as the person who presigned the url
+    - uses the IAM key of the signing IAM principal
+    - limited lifetime
+
+#
+
+## 145. AWS Global Accelerator - Overview
+
+- you have deployed an app and have global users who want to access it
+- they currently go over the public internet, lots of latency
+- we want to go through fast as possible over AWS network
+- uses anycast ip concept
+- users connect to nearest edge location, then over private AWS network to the destination
+- leverage the AWS internal network to route your app
+- 2 anycast IP are created for your app
+- the anycast IP sends traffic directly to edge locations
+- the edge locations send the traffic to your app
+- works with Elastic IP, EC2 instances, ALB, NLB, public or private
+- consistent performance
+  - intelligent routing
+  - no issue with client cache
+  - uses AWS internal network
+- health checks
+  - GA peforms health checks
+  - helps make your app global
+  - great for DR(thanks to health checks)
+- Security
+  - only 2 external IPs need to be whitelisted
+  - DDoS protection thanks to AWS shield
+- AWS GA vs CF
+  - both use global network and edge locations
+  - CF
+    - improves performance by caching
+    - content is served from the edges
+  - GF
+    - no caching, still goes directly to app
+
+#
+
+## 146. AWS Global Accelerator - Hands On
+
+- not free
+- GA console
+- create app on EC2 instance in a region
+- create another app on another instance in diff region
+- in GA console
+  - create accelerator
+  - name
+  - listener
+  - ports
+  - add endpoints for each region you need(the 2 from the instances you created)
+  - create accelerator
+
+#
+
+## Quiz 11: CloudFront & AWS Global Accelerator Quiz
+
+-
 
 #

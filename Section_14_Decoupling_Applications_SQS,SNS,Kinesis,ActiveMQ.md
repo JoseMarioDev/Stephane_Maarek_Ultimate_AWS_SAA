@@ -201,6 +201,70 @@
 
 ## 165. SNS and SQS - Fan Out Pattern
 
+- idea is to push once into SNS, receive in all SQS queues that are subscribers
+  - so, SQS queues are subscribers, SNS is the publisher
+- fully decoupled no data loss
+- allows for data persistence, delayed processing, retries of work
+- can abb more subs over time
+- sqs queue needs to have access policy that allows SNS to write to it
+- SNS cannot send msg to SQS FIFO queues - AWS limitation
+
+#
+
+## 166. Kinesis Data Streams Overview
+
+- managed alternative to Apache Kafka
+- big data streaming tool
+- great for logs, metrics, IoT,clickstreams
+- great for "real-time" data
+- great for streaming processing frameworks(Spark, NiFi, etc)
+- data is automatically replicated to 3 AZs
+- associated with big data real time
+- 3 products
+  - kinesis streams: low latency streaming ingest at scale
+  - kinesis analytics: perform realtime analytics on streams using SQL
+  - kinesis firehose: load streams into S3, Redshift, ElasticSearch
+- kinesis streams:
+  - streams are divided into ordered shards/partitions
+  - producers -> shards -> consumers
+  - data retention default is 1 day, can go up to 7 days
+  - ability to reprocess/replay data
+  - multiple apps can consume the same stream
+  - real time processing with scale of throughput
+  - once data is inserted in kinesis, can't be deleted(immutable)
+- one stream is made of many diff shards
+- 1 mb/s or 1000 messages/s at write per shard
+- 2 mb/s at read per shard
+- billing is per shard provisioned, can have as many shards as you want
+- batching available or per msg calls
+- shards can evolve over time
+- records are ordered per shard
+- put records
+  - use the putRecord API + partition key that gets hashed to determine shard ID
+  - same key goes to the same partition
+  - msgs get a sequence number
+  - choose partition key that is highly distributed
+- use batching with putRecords to reduce costs and increase throughput
+- provisionedthroughputexceeded if we go over the limits
+- can use CLI, AWS SDK or 3rd party libraries
+- API exceptions
+  - when sending more data than shard can handle
+  - make sure you dont have hotshard (partition key is bad and too much data is going to that partition)
+  - solution: retry with backoff, increase shards, change partition key
+- consumers
+  - can be CLI, SDK
+  - kinesis client library
+- security
+  - uses IAM policy
+  - encrypt inflight using HTTPS endpts
+  - at rest using KMS
+  - can encrypt clientside, but much harder
+  - VPC endpoints available for Kinesis to access within VPC
+
+#
+
+## 167. Kinesis Data Streams Hands On
+
 -
 
 #

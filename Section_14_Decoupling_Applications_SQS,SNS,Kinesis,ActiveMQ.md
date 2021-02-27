@@ -265,6 +265,98 @@
 
 ## 167. Kinesis Data Streams Hands On
 
+- kinesis console
+- get started
+- choose resource to create
+- create data stream
+- name
+- shards
+- create stream
+- click on stream to see details
+- encryption
+- data retention period
+- shard level metrics
+- monitoring
+- tags
+- in cli aws kinesis help to see details
+-
+
+#
+
+## 168. Kinesis Firehose & Kinesis Data Analytics
+
+- full managed service, no administration, automatic scaling, serverless
+- used to load data into Redshift, Amazon S3, ElasticSearch, Splunk
+- near real time
+- 60 seconds latency minimum for non full batches
+- supports many data formats, conversions,
+- pay for amt of data going through firehose
+- kinesis data streams vs firehose
+  - steams
+    - going to write custom code(producer/consumer)
+    - realtime
+    - must manage scaling - shard splitting/merging
+    - data storage
+  - firehose
+    - full managed, send to S3, splunk, redshift, elasticsearch
+    - serverless data transformations with Lambda
+    - near real time
+    - automated scaling
+    - no data storage
+  - Kinesis Analytics
+    - perform real time analytics using SQL
+    - auto scaling
+    - continuos
+    - pay for actual consumption
+
+#
+
+## 169. Data Ordering for Kinesis vs SQS FIFO
+
+- ordering data into Kinesis
+  - should be using a diff partition key for each piece of data
+    - truck in the example
+  - hashing the partition key with the msg will determine what shard to put data into
+    - truck example
+- ordering data into SQS
+  - for SQS FIFO, if you dont use a group ID, messages are consumed in the order sent, with only one consumer
+  - you want to scale the number of consumers, but you want msgs to be grouped when they are related to one another
+  - they you use a group ID
+
+#
+
+## 170. SQS vs SNS vs Kinesis
+
+- SQS
+  - consumer pull data
+  - data is deleted after being consumed
+  - no order guarantee - unless using FIFO
+  - can have as many consumers as you want
+- SNS
+  - pub/sub model
+  - up to 10 million subs
+  - data is persistent
+  - integrate with SQS for fan out arch
+- kinesis
+  - consumers pull data
+  - possibility to replay data
+  - real time big data analytics
+  - ordering at shard level
+
+#
+
+## 171. Amazon MQ
+
+- when migrating current onprem queue services to cloud, instead of re-engineering the app to use SQS, SNS, we can use amazon active MQ
+- Amazon MQ - managed Apache Active MQ
+- Amazon MQ - doesnt scale as much as SQS/SNS
+- runs on a dedicated machine, can run in HA with failover
+- has both queue feature and topic feature
+
+#
+
+## Quiz 13: Messaging and Integration Quiz
+
 -
 
 #

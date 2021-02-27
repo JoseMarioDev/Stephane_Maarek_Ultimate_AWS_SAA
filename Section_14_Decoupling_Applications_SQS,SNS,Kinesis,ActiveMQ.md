@@ -147,6 +147,60 @@
 
 ## 163. Amazon SNS - Overview
 
+- what if you want to send one msg to many receivers?
+- pub/sub model
+- pub sends msg to queue, establishes a topic. the subscribers sub to topic and get the msg
+- the event producer only sends msg to one SNS topic
+- as many event receivers(subscribers) as we want listening to the SNS topic notifications
+- each sub to the topic will get all the msgs(new feat to filter msgs)
+- up to 10 million subscriptions per topic
+- 100k topics limit
+- subscribers can be:
+  - SQS
+  - HTTP/HTTPS
+  - lambda
+  - email
+  - SMS msgs
+  - mobile notifications
+- integrates with lots of AWS services
+  - cloudwatch for alarms
+  - ASG notifications
+  - S3 buckets
+  - CloudFormation
+- how to publish
+  - use the topic publish SDK
+  - create a subscription
+  - publish to topic
+  - direct publish (for mobile apps SDK)
+- SNS - Security
+  - inflight using HTTPS API
+  - atrest using KMS keys
+  - client side if client want to perform itself
+- access controls
+  - IAM policies to regulate access
+- SNS access policies
+  - cross accts
+  - allowing other services to use
+
+#
+
+## 164. SNS - Hands On
+
+- SNS console
+- create topic
+- details
+  - name
+  - encryption
+  - access policy
+  - retry policy
+- create topic
+- create subscription
+  - choose protocol
+
+#
+
+## 165. SNS and SQS - Fan Out Pattern
+
 -
 
 #

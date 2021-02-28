@@ -12,7 +12,7 @@
 - initially serverless = Functions as a Service
 - Serverless was pioneered by AWS Lambda but now also includes anything that's managed: databases, messaging, storage, etc
 - serverless does not mean there are no servers
-  - it means you just dont manage/provision/see them
+  - it means you just don't manage/provision/see them
 - Serverless in AWS
   - AWS Lambda
   - DynamoDB

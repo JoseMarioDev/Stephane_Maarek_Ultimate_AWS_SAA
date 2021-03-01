@@ -131,19 +131,88 @@
 
 ## 178. DynamoDB Overview
 
--
+- fully managed, highly available with replication across 3 AZs by default
+- NoSQL database - not a relational database
+- scale to massive workloads, distributed database
+- millions of requests per seconds, scales largely
+- fast and consistent performance
+- integrated with IAM
+- enables event driven programming w/DynamoDB Streams
+- low cost and autoscaling capabilities
+- basics
+  - made of tables
+  - each table has a primary key(must be decided at creation time)
+  - each table has an infinite number of items(=rows)
+  - each item has attributes(think columns) can be added over time- can be null
+  - max size of an item is 400kb
+  - data types supported are: scalar types, document types, set types
+- provisioned throughput
+  - tables must have provisioned read and write capacity units
+  - Read Capacity Units(RCU)
+  - Write Capacity Units(WCU)
+  - option to setup autoscaling of throughput to meet demand
+  - throughput can be exceeded temporarily using "burst credit"
+  - if burst credits are empty, you'll get a "provisionedthroughputexception"
+  - its then advised to do an exponential back-off retry
 
 #
 
 ## 179. DynamoDB Hands-On
 
--
+- dynamoDB console
+- create table
+- no need to create a db, it's a fully managed service
+- table name
+- primary key
+- read/write capacity mode
+  - provisioned or ondemand
+  - specify RCUs and WCUs
+  - there is a calculator to help you figure out how much you need
+- can setup autoscaling
+- enable encryption at rest
+- create table
 
 #
 
 ## 180. DynamoDB Advanced Features
 
--
+- DAX
+  - DDB Accelerator
+  - seamless cache for DDb, no application rewrite
+  - writes go through DAX to DDB
+  - microsecond latency for cached reads and queries
+  - solves the hot key problem(too many reads)
+  - 5 minute TTL for cache by default
+  - up to 10 nodes in a cluster
+  - multiAZ - min 3 modes recommended for production
+  - secure(encryption at rest with KMS, VPC, IAM, Cloudtrail...)
+- DynamoDB Streams
+  - integrate DDB w/Lambda functions
+  - changes in DDB(Create,Update,delete) can endup in a stream
+  - this stream can be read by AWS Lambda to do:
+    - react to changes in real time(welcome email to new users)
+    - analytics
+    - create derivative tables
+    - insert into ElasticSearch
+  - could implement cross region replication using streams
+  - stream as 24 hours of data retention
+- new features
+  - transactions - all or nothing , coordinate insert,update,deletes across multiple tables
+  - on demand - scales automatically, no capacity planning. useful for spikes
+- security
+  - VPC endpoints to access w/o internet
+  - access controlled by IAM
+  - encryption at rest using KMS
+  - intransit using SSL/TLS
+- backup/restore features
+  - point in time like RDS
+  - no performance impact
+- Global tables
+  - multi region, fully replicated, high perform
+- Amazon DMS can be used to migrate to DDB
+- you can launch a local DDB instance on your computer for development purposes
+- global tables - CRR. must enable streams, active active replication, many regions
+- capacity planning - can provision RCU/WCU and autoscaling. can use ondemand capacity. more expensive
 
 #
 

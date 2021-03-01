@@ -218,31 +218,133 @@
 
 ## 181. API Gateway Overview
 
--
+- serverless offering that allows us to create REST APIs that are going to be public and accessible for clients
+- client talks to API GW and it proxies request to Lambda function
+- features
+  - can use Lambda and APIGW to create serverless option.  No infrastructure to manage
+  - supports websockets protocol
+  - Handles API versioning
+  - handles dif environments - dev,testing,prod
+  - handles security - authentication and authorization
+  - create API keys, handle request throttling
+  - compatible with Swagger and OpenAPI to quickly define APIs
+  - transform and validate req/res 
+  - generate SDK and API specs
+  - cache API responses
+- integrates with - high level
+  - Lambda functions
+    - invoke lambda functions
+    - easy way to expose REST APIs backed by AWS Lambda
+  - HTTP
+    - expose HTTP endpoints in the backend
+    - why? add rate limiting, caching, user auth, api keys, etc
+  - AWS Services
+    - expose any AWS api through GW
+    - ex: start an AWS step function workflow, post msg to SQS
+- APIGW endpoint types
+  - Edge optimized - default reqs are routed through cloudfront edge locations
+  - regional - for clients within the same region
+  - private - vpc access only, manage permissions through IAM
 
 #
 
 ## 182. API Gateway Basics Hands-On
 
--
+- APIGW console
+- choose type of API you wanna build
+- ex REST API
+- build
+- create API
+- settings 
+- endpoint type
+- creat the API
+- taken to the actions page
+- create method
+- GET request
+- deploy API when ready
 
 #
 
 ## 183. API Gateway Security
 
--
+- IAM Permissions
+ - creat an IAM auth policy and attach user/role
+ - APIGW verifies IAM permissions passed when calling the applications
+ - uses "SIG v4" capability where IAM creds are in the headers
+- Lambda Authorizer - most common
+  - uses AWS Lambda to verify token being passed in the header
+  - option to cache result of authentication
+  - helpful when using OAuth, SAML, 3rd party type of auth
+  - Lambda must return an IAM policy for the user
+- Cognito user pools
+  - Cognito fully manages user lifecycle
+  - APIGW automatically verifies identity from AWS Cognito
+  - no custom implmentation required
+  - Cognito only helps with Authentication, not authorization
+- Summary
+  - IAM
+    - great for users/roles with AWS accounts
+    - handles authentication and authorization
+    - leverages SIG v4
+  - lambda authorizer aka Custom Authorizer
+    - great for 3rd party tokens
+    - very flexible in terms of what IAM policy is returned
+    - handles authentication and authorization
+    - pay per Lambda invocation
+  - Cognito user pools
+    - you manage your own user pool(can be backed by FB, Google)
+    - no need to write custom code
+    - only authentication pattern
+
+
 
 #
 
 ## 184. AWS Cognito Overview
 
--
+- when we want to give our users an identity so that they can still interact with our app
+- 3 ways to do:
+  - Cognito User Pools
+    - signin functionality for app users
+    - integrate with APIGW
+  - Cognito Identity Pools-Federated Identity
+    - provide AWS creds to users so they can access AWS resources
+    - integrate with Cognito User Pools as an identity provider
+  - Cognito Sync
+    - sync data from device to Cognito
+    - replaced by AppSync
+  - Cognito User Pools(CUP)
+    - serverless db of user for your mobile app
+    - simple login/email/password combination
+    - possible to verify emails/phone numbers and add MFA
+    - can enable federated identities(FB,Google,SAML)
+    - sends back JWT
+    - can be integrated with APIGW for authentication
+  - Federated Identity Pools(FIP)
+    - goal - provide direct access to AWS resources from client side
+    - how - log in to federated identity provider, get temp creds from AWS with predefined IAM policy permissions
+    - ex: provide temp access to S3 bucket using facebook login
+  - Cognito Sync
+    - deprecated - use AppSync now
+    - store preferences, configuration, state of application
+    - cross device sync-ios, android
+    - offline capable
+    - requires FIP
+    - stores data in datasets(up to 1mb) up to 20 data sets
 
 #
 
 ## 185. Serverless Application Model(SAM) Overview
 
--
+- framework for devloping and deploying serverless applications
+- all the config is in YAML
+- lambda functions
+- dynamodb tables
+- apigw
+- cognito user pools
+- SAM can help you run your Lambda, APIGW, DDB locally
+- SAM can use codeDeploy to deploy Lambda functions
+
 
 #
 

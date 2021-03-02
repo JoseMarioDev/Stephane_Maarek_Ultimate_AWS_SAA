@@ -78,6 +78,30 @@
 
 ## 190. software updates distribution
 
--
+- app running on EC2 that distrubtes software updates
+- when a new update is released, we got a lot of requests and the content is distributed in mass. gets costly
+- we dont want to change our application, just want to optimize our cost and cpu
+  ![arch using cloudfront for storing updates](img/16-software-updates.png)
+- benefits of using cloudfront for storing these updates
+  - no updates to architecture
+  - will cache software updates at the edge
+  - software update files are not dynamic, they are static(not changing)
+  - our EC2 instances arent serverless, but CF is
+  - CF is serverless and will scale for us
+  - our ASG will not scale as much, save us cost on EC2 instances
+  -
+
+#
+
+## 191. Big Data Ingestion Pipeline
+
+- ingestion pipeline should be serverless
+- we want to collect data in real time
+- we want to transform the data
+- we want to query the data using SQL
+- reports created from these queries should be in S3
+- we want to load the data into a warehouse and create dashboards
+  ![arch of ingestion pipeline](img/16-ingestion.png)
+  ![finer points](img/16-ingestion-discussion.png)
 
 #

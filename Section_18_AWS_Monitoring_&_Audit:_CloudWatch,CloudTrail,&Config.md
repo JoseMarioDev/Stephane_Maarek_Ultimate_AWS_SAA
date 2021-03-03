@@ -1,70 +1,70 @@
-## 202. AWS Monitoring - Section Introduction
+## 201. AWS Monitoring - Section Introduction
+
+- introduction 
+
+#
+
+## 202. AWS CloudWatch Metrics
+
+- 
+
+#
+
+## 203. AWS CloudWatch Dashboards
 
 -
 
 #
 
-## 203. AWS CloudWatch Metrics
+## 204. AWS CloudWatch Logs
 
 -
 
 #
 
-## 204. AWS CloudWatch Dashboards
+## 205. CloudWatch Agent & CloudWatch Logs Agent
 
 -
 
 #
 
-## 205. AWS CloudWatch Logs
+## 206. AWS CloudWatch Alarms
 
 -
 
 #
 
-## 206. CloudWatch Agent & CloudWatch Logs Agent
+## 207. EC2 Instance Recovery with CloudWatch Alarms
 
 -
 
 #
 
-## 207. AWS CloudWatch Alarms
+## 208. AWS CloudWatch Events
 
 -
 
 #
 
-## 208. EC2 Instance Recovery with CloudWatch Alarms
+## 209. AWS CloudTrail
 
 -
 
 #
 
-## 209. AWS CloudWatch Events
+## 210. AWS Config - Overview
 
 -
 
 #
 
-## 210. AWS CloudTrail
+## 211. AWS Config - Hands On
 
 -
 
 #
 
-## 211. AWS Config - Overview
-
--
-
-#
-
-## 212. AWS Config - Hands On
-
--
-
-#
-
-## 213. CloudTrail vs CloudWatch vs Config
+## 212. CloudTrail vs CloudWatch vs Config
 
 -
 

@@ -111,13 +111,25 @@
 
 ## 207. EC2 Instance Recovery with CloudWatch Alarms
 
--
+- you can have a status check on your EC2 instances
+  - types:
+  - instance status - checks the EC2 vm
+  - system status - checks the underlying hardware
+- you can have a metric called StatusCheckFailed_System
+- if this fails, triggers an alarm that starts an action called Instance Recovery
+- same private, public, elastic iP, metadata, placement group
+- you lose any data that is on the instance store(locally)
+- EBS data can be saved
 
 #
 
 ## 208. AWS CloudWatch Events
 
--
+- can use CW events to:
+- schedule Cron jobs
+- event pattern: event rules to react to a service doing something
+- trigger to Lambda functions, SQS, SNS, Kinesis msgs
+- CW Events create a small jSON doc to gie information about the change
 
 #
 

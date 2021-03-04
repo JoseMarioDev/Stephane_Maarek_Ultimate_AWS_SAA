@@ -97,7 +97,15 @@
 
 ## 206. AWS CloudWatch Alarms
 
--
+- alarms are used to trigger notifications for any metrics
+- can be attached to any ASG, EC2 actions, SNS notifications
+- various options(sampling, %, max,min,etc)
+- alarm states:
+  - ok
+  - insufficient_data
+  - alarm
+- period: length of time in seconds to evaluate metric
+- high resolution custom metrics: only choose 10 sec or 30 sec
 
 #
 

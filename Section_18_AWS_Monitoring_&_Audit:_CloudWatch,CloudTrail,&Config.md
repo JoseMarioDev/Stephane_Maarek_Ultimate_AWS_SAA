@@ -135,25 +135,73 @@
 
 ## 209. AWS CloudTrail
 
--
+- provides governance, compliance, and audit for AWS accts
+- enabled by default
+- get history of events/API calls made by your AWS accts by:
+  - console
+  - SDK
+  - CLI
+  - AWS Services
+- can put trail logs into CW logs
+- if a resource is deleted, look into CT first
 
 #
 
 ## 210. AWS Config - Overview
 
--
+- helps with auditing and recording compliance of your AWS resources
+- helps records configurations and changes over time
+- possible to store config data into S3(to be analyzed by Athena)
+- questions that can be answered by AWS Config:
+  - is there unrestricted SSH access to my secgroup?
+  - do my buckets have public access?
+  - how as my ALB configuration changed over time?
+- AWS Config is a per-region service
+- can be aggregated across regions and accts
+- can pair with AWS CT to see who
+- AWS config rules
+  - can use AWS managed config rules(over 75)
+  - can make custom config rule
+  - rules can be evaluated/triggered
+  - can trigger CW events if rule is noncompliant
+  - rules can autoremediation setting
+- AWS config rules do not prevent things from happening(no deny)
+- pricing: no free tier, $2 per active rule per region per month
 
 #
 
 ## 211. AWS Config - Hands On
 
--
+- config console
+- get started
+- settings
+- resources to record
+- log changes to S3 bucket
+- can config SNS topic
+- can config Role
+- config rules
+- create config
+- config dashboard
 
 #
 
 ## 212. CloudTrail vs CloudWatch vs Config
 
--
+- CW
+- performance metrics
+- dashboards
+- events and alerts
+- log aggregation and analysis
+- CT
+  - records API calls made within your acct by everyone
+  - can define trails for specific resources
+  - global service
+- config
+  - record config changes
+  - evaluate resources against compliance rules
+  - get timeline of changes and compliance
+- example of how all 3 can be applied to an ELB
+  ![example](img/18-elbexample.png)
 
 #
 

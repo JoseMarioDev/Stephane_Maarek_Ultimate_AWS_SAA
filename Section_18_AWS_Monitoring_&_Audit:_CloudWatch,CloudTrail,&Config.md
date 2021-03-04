@@ -43,12 +43,6 @@
 
 ## 204. AWS CloudWatch Logs
 
--
-
-#
-
-## 205. CloudWatch Agent & CloudWatch Logs Agent
-
 - applications can send logs to CW using the SDK
 - CW can collect logs from:
   - Beanstalk
@@ -70,7 +64,34 @@
   - metric filters can be used to trigger alarms
 - CW log insights
   - can be used to query logs and add queries to CW dashboards
-  -
+
+#
+
+## 205. CloudWatch Agent & CloudWatch Logs Agent
+
+- by default no logs go from EC2->CW
+- you need to run a CW agent on EC2 to push log files you want
+- make sure IAM permissions are correct
+- CW log agent can be installed on EC2 instances and onprem as well
+- there are 2 types of log agents:
+  - CW logs agent
+    - old version of agent
+    - can only send to CW Logs
+  - unified agent
+    - collects additional system level metrics such as RAM, processes, etc...
+    - also collects logs to send to CW Logs
+    - better because it can do both metrics and logs
+    - can also configure agent easily using the SSM parameter store
+- unified agent metrics
+  - collected directly on your linux server/EC2 instance
+  - types of metrics you can create
+    - CPU(active,guest,idle,system,user,steal)
+    - disk metrics
+    - RAM
+    - netstat
+    - processes
+    - swap space
+- reminder: out of the box metrics for EC2 - disk, CPU, network(high level)
 
 #
 

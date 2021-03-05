@@ -89,7 +89,23 @@
 - member accts can only be part of one org
 - benefits
   - consolidated billing across all accts. single pay method
-  -
+  - pricing benefits from aggregated usage(volume discounts for EC2,S3...)
+  - API is available to automate operations
+- strategies
+  - create accts per dept, cost center, dev/test/prod, regulations,etc
+- organize accts using Organizational Units
+- service control policy
+  - whitelist or blacklist IAM actions
+  - applied at the OU or acct level
+  - does not apply to the master acct
+  - SCP is applied to all the users and roles of the acct, including root
+  - SCP does not affect service linked roles
+  - must have an explicit allow
+  - restrict access to certain services
+- to migrate accounts from one org to another
+  - remove member acct from old org
+  - send invite to the new org
+  - accept invite to the new org from the member account
 
 #
 

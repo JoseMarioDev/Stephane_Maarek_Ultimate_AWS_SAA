@@ -111,37 +111,88 @@
 
 ## 217. Organizations - Hands On
 
--
+- aws organizations console
+- create organization
+- verify email
+- add accounts - either invite/create accounts
+- organize accounts tab
+  - create OU
+  - tree struct in the left panel
+- move accounts to OU
+- from root, enable service control policies - right pane
+- policies tab top
+  - service control policies
+  - here you can create policy
+  - attached created policy to applicable OU
 
 #
 
 ## 218. IAM - Advanced
 
--
+- IAM conditions
+  - way to make IAM policies more restrictive based on conditions
+  - see example JSON in the slides
+- IAM for S3
+  - bucket level permissions dont need "/\*"
+  - object level permissions need "/\*"
+- IAM Roles vs Resource based policies
+  - attach a policy to a resource(ex s3 bucket policy) versus attaching of a using a role as a proxy
 
 #
 
 ## 219. IAM - Policy Evaluation Logic
 
--
+- IAM permission Boundaries are supported for users and roles(not groups)
+- advanced feature to use a managed policy to set the max permissions an IAM entity can get
+- set boundary in IAM console in Users settings
+- boundaries are more restrictive
+- can be used in combination of AWS org SCP
+- diagram of how IAM policies are evaluated
+  ![diagram of eval logic](img/19-evaluationlogic.png)
 
 #
 
 ## 220. Resource Access Manager (RAM)
 
--
+- share AWS resources you own with other accts
+- share with any acct or within your org
+- avoid resource duplication
+- VPC subnets
+  - allow to have all the resources launched in the same subnet
+  - must be from the same AWS org
+  - cannot share secgroups and default VPC
+  - participants can manage their own resources in there
+  - can view modify delete resources that belong to other participants or the owner
+- each acct is responsible for it's own resources
+- cannot view, mod, delete other resources in other accts
+- network is shared so anything deployed in the VPC can talk to other resources in the VPC
+- applications are accessed easily across accounts using private IP
+- secgroups from other accts can be referenced for max security
+- RAM console to share resources
+- share vpc subnet most popular use case
 
 #
 
 ## 221. AWS Single Sign On (SSO) - Overview
 
--
+- centrally managed SSO to access multiple accts w/3rd party business apps
+- integrated with AWS orgs
+- supports SAML 2.0
+- integrates with onprem AD
+- centralized perm mgmt
+- centralized auditing w/cloudtrail
 
 #
 
 ## 222. AWS Single Sign On )SSO - Hands On
 
--
+- AWS SSO console
+- enable SSO
+- three steps
+  - choose identity source
+  - manage SSO access to AWS accts
+  - manage SSO to your applications
+- gives you user portal
 
 #
 

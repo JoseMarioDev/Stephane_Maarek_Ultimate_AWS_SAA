@@ -78,12 +78,18 @@
     - AD compatible managed directory on AWS
     - cannot join with onprem AD
 
-
 #
 
 ## 216. Organizations - Overview
 
--
+- global service
+- allows to manage multiple AWS accts
+- the main acct is the master acct - you cant change it
+- other accts are member accts
+- member accts can only be part of one org
+- benefits
+  - consolidated billing across all accts. single pay method
+  -
 
 #
 
@@ -119,7 +125,7 @@
 
 ## 222. AWS Single Sign On )SSO - Hands On
 
-\_
+-
 
 #
 

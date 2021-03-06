@@ -1,6 +1,7 @@
 ## 237. Section Introduction
 
--
+- create operate manage a VPC
+- ![VPC arch overview](img/21-vpc-diagram.png)
 
 #
 

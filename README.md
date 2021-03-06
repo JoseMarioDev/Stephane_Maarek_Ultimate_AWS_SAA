@@ -4,6 +4,10 @@
 
 ### misc notes
 
+### Diagram of popular AWS services
+
+- ![high level view](img/aws-services.png)
+
 - [link to information about global vs regional AWS services](https://jayendrapatil.com/aws-global-vs-regional-vs-az-resources/)
 
 ### section 1

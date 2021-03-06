@@ -71,37 +71,83 @@
 
 ## 226. KMS Hands On w/CLI
 
-- 
+- KMS service in console
+- three tabs on left - AWS managed keys, Customer managed keys, custom key stores
+- create customer managed keys
+- choose between symmetric or asymmetric
+- key material origin
+- create alias
+- key administrator
+- config policy on who can use. root user(everyone) by default can use
+- create key
+- click on key for settings
+- using cli, how to encrypt files.
+- file with commands is in resources folder
 
 #
 
 ## 227. SSM Parameter Store Overview
 
--
+- securely store configuration and secrets
+- optional seamless encryption using KMS
+- serverless, scalable, durable easy SDK
+- version tracking of configurations/secrets
+- configuration mgmt using path and IAM
+- notifications with CloudWatch events
+- integration with cloudformation
+- uses a folder structure like hierarchy
+- 2 tiers - standard and advanced
+- can set parameter policies
+  - assign a TTL
+  - deleting sensitive data such as passwords
 
 #
 
 ## 228. SSM Parameter Store Hands On(CLI)
 
--
+- systems manager console
+- parameter store on left pane
+- create parameter
+- /myapp/dev/db-url for example
 
 #
 
 ## 229. SSM Parameter Store Hands On(AWS Lambda)
 
--
+- create a function
+- name and choose runtime
+- permissions
+- create function
+- body of function is using boto31 sdk to call SSM and get the parameters back
+- test function
+- check IAMS permissions
+- run your function
 
 #
 
 ## 230. AWS Secrets Manager - Overview
 
--
+- newer service, meant for storing secrets
+- capability to force rotation of secrets every X days
+- automate generation of secrets on rotation
+- integrate w/RDS
+- secrets are encrypted using KMS
+- mostly meant for RDS integration
 
 #
 
 ## 231. AWS Secrets Manager - Hands On
 
--
+- secrets manager in console
+- store a new secret
+- select secret type
+- select "other type of secrets"
+- specify key/value pair
+- select encryption key
+- name your secret
+- configure automatic rotation
+- choose Lambda function invoked to handle rotation
+- store
 
 #
 

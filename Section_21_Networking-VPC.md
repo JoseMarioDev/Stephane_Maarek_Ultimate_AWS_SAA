@@ -7,7 +7,23 @@
 
 ## 238. CIDR, Private vs Public IP
 
--
+- classless interdomain routing
+- help define an IP address range
+- 2 components
+  - base IP
+  - subnet mask /xx part
+- base IP part represents an IP contained in that range
+- subnet mask defines how many bits can change in the IP
+- subnet mask can take 2 forms
+  - 255.255.255.0 - less common
+  - /24 - more common
+- ![how many available IPs based on subnet mask](img/21-subnetmasks.png)
+- private vs public IP - v4
+- allowed ranges
+- certain blocks of IP are blocked for private use
+- 10.0.0.0/8(10.0.0.0-10.255.255.255) -> big networks
+- 172.16.0.0/12(172.16.0.0-172.31.255.255) -> AWS default
+- 192.168.0.0/16(192.168.0.0-192.168.255.255)-> common home networks
 
 #
 

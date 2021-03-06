@@ -153,31 +153,71 @@
 
 ## 232. CloudHSM
 
--
+- KMS -> AWS manages the software for encryption
+- CloudHSM -> AWS provisions encryption hardware
+- dedicated hardware(HSM = hardware security module)
+- you manage your own encryption keys entirely(not AWS)
+- HSM device is tamper resistent
+- CloudHSM clusters are spread across multiple AZ(HA) - you must set up
+- supports both symmetric/asymmetric keys
+- no free tier
+- must use CloudHSM software
 
 #
 
 ## 233. Shield - DDoS Protection
 
--
+- 2 flavors
+  - standard: free services enabled by default for every AWS customer
+  - provides protection from DDoS attacks
+  - advanced: DDoS mitigation service(3k per month cost)
+  - protests against more sophisticated attacks on EC2, ELB, CF, AWS GA, R53
+  - 24/7 access to AWS DDoS response team
+  - protects against higher fees due to DDoS attacks
 
 #
 
 ## 234. Web Application Firewall (WAF)
 
--
+- protects against layer 7 exploits
+- HTTP layer
+- deploy on ALB, API GW, CloudFront
+- define web ACL - access control list
+- rules on IP addresses, HTTP headers, HTTP body, URI strings
+- common attacks projection: SQL injection, Cross-site scripting(XSS)
+- size limits on queries, geo-match to block countries
+- rate based rules to count occurrences of events - for DDoS attacks
+- AWS firewall manager
+  - manage all rules in all accts
+- ![arch for DDoS protection using shield and WAF](img/20-DDoS-arch.png)
 
 #
 
 ## 235. WAF & Shield - Hands On
 
--
+- WAF and shield console
+- create web ACL
+- name
+- resource type to associate with
+  - choose cloudfront distributions
+  - add resources to protect
+  - add rules/groups
+  - create web ACL
+- Shield - select from left pane
+  - click on activate to enable advanced
+- AWS WAF - left pane
+  - config firewall rules
 
 #
 
 ## 236. Shared Responsibility Model
 
--
+- aws responsibilities
+  - security of cloud
+    - protecting infrastructure that runs AWS services
+    - manages services like S3, DDB, RDS
+- customer responsibility
+  - mgmt of the guest OS, sec patches, updates, firewall network config, IAM
 
 #
 

@@ -60,7 +60,19 @@
 
 ## 241. Subnet Overview and Hands On
 
--
+- tied to AZs
+- in each AZ create diff subnets/ 1 private 1 public
+- subnets in the dashboard
+- create subnets
+- AWS reserves 5 IP addresses(first 4 and last 1 IP) in each subnet
+- these 5 IPs are not available for use and cannot be assigned to an instance
+- ex: if CIDR block is 10.0.0.0/24 reserved IPs are:
+  1. 10.0.0.0 Network address
+  2. 10.0.0.1 reserved by AWS for VPC router
+  3. 10.0.0.2 reserved by AWS for mapping to amazon provided DNS
+  4. 10.0.0.3 reserved by AWS for future use
+  5. 10.0.0.255 network broadcast address. AWS does not support broadcast in VPC, therefore the address is reserved
+- exam tip: remember these addresses cannot be used, so if questions ask about available addresses, keep that in mind
 
 #
 

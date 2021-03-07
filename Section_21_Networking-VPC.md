@@ -29,13 +29,32 @@
 
 ## 239. Default VPC Overview
 
--
+- all new accts have a default VPC
+- new instances are launched into default VPC is not specified
+- default VPC has internet connectivity and all instances have public IP
+- we also get a public and private DNS name
+- VPC in console
+- dashboard resources by region
+- comes by default with subnets, route table, NACL, internet gateway
 
 #
 
 ## 240. VPC Overview and Hands On
 
--
+- VPC=virtual private cloud
+- can have multiple VPCs in a region (max 5 per region - soft limit)
+- max CIDR per VPC is 5. each CIDR
+  - min size /28 = 16 ip addresses
+  - max size /16 = 65536 ip addresses
+  - because VPC is private only private ranges are allowed
+- your VPC cidr should not overlap with your other networks
+- could use wizard, hands on does it manually
+- create VPC
+- name tag
+- CIDR block
+- create
+- it created a route table, NACL for us
+- can add CIDRs, max of 5
 
 #
 

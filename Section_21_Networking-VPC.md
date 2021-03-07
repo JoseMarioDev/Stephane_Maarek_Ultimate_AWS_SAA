@@ -78,7 +78,20 @@
 
 ## 242. Internet Gateways & Route Tables
 
--
+- IGs help our VPC instances connect with the internet
+- it scales horizontally and is HA and redundant
+- must be created separately from VPC
+- one VPC can only be attached to one IGW and vice versa
+- IGW is also a NAT for the instances that have a public IPv4
+- IGWs on their own do not allow internet access
+  - route tables must also be edited
+- adding IGW
+  - IGW from left pane
+  - create IGW
+- need to change route tables
+- edit route table for public subnets
+  - add all IPs (0.0.0.0/0) as a destination and IGW as target
+- ![arch so far](img/21-currentarch.png)
 
 #
 

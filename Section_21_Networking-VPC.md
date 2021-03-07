@@ -97,7 +97,17 @@
 
 ## 243. NAT Instances
 
--
+- allow instances in private subnets to connect to internet
+- nat instances must be launched in public subnet
+- must disable EC2 setting: source/destination check
+- must attach Elastic IP to it
+- route table must be configured to route traffic from private subnets to NAT instance
+- ![arch for nat instance](img/21-natinstancearch.png)
+- nat instances are outdated; summary of what we did:
+  - use amazon linux ami preconfiguration as a nat instance
+  - not HA/resilient out of the box. would need to create ASG in multiAZ
+  - internet traffic bandwidth depends on EC2 instance performance
+  - must manage security groups and rules
 
 #
 

@@ -113,13 +113,32 @@
 
 ## 244. NAT Gateways
 
--
+- better alt to Nat instances
+- AWS manages NAT, higher bandwidth, better availability, no admin
+- pay by hour for usage and bandwidth
+- NAT is created in a specific AZ uses an elastic IP
+- cannot be used by an instance in that subnet, only from other subnets
+- requires an IGW private subnet -> NAT -> IGW
+- 5gbs of bandwidth with autoscaling up to 45gbps
+- no secgroups to manage/require
+- ![arch of natgw](img/21-NATGW-arch.png)
+- resilient within a single AZ. for HA must create NATGW in multiple AZs
+- ![natgw with HA](img/21-NATGW-HA.png)
 
 #
 
 ## 245. DNS Resolution Options & Route 53 Private Zones
 
--
+- 2 settings that are important
+  - enableDnsSupport - dns resolution setting
+  - default is true
+  - helps decide if DNS resolution is supported for VPC
+  - if true, queries the AWS DNS server at 169.254.169.253
+  - enableDnsHostname - DNS Hostname setting
+  - false by default for newly created VPC, true by default for default VPC
+  - wont do anything unless enableDnsSupport is true
+  - if true, assigns public hostname to EC2 instance if it's public
+  - if you use custom DNS domain names in a private zone in R53, you must set both of these attributes to true
 
 #
 

@@ -144,24 +144,70 @@
 
 ## 246. NACL & Security Groups
 
--
+- NACLs live outside the subnet, before traffic gets to subnet, the secgroup, and the EC2 instance
+- traffic hits nacl first, evaluates if allowed, goes through subnet to secgroup.
+- secgroup evaluates if allowed goes to instance
+- outbound from secgroup is allowes automatically because secgroups are stateful. if inbound is allowed/outbound is allowed automatically
+- outbound traffic hits the nacl, gets evaluated because nacls are stateless. not automatic, needs to be evaluated
+- NACL details
+  - are like a firewall which control traffic to/from subnet
+  - default nacl allows everything outbound and everything inbound
+  - one nacl per subnet, new subnets are assigned the default nacl
+  - define nacl rules
+    - rules have a number for precedence
+    - ex: 100 rule would outweigh 200 precedence
+    - last rule is an \* and denies a request in case no match
+    - AWS recommends adding rules by increments of 100
+  - newly created nacls will deny everything
+  - used case: nacls are a great way of blocking a specific IP at the subnet level
 
 #
 
 ## 247. VPC Peering
 
--
+- connect 2 VPCs privately using AWS' network
+- make them behave as if they were in the same network
+- must not have overlapping cidr
+- vpc peering connections are not transitive(must be established for each vpc that needs to communicate with each other)
+- you can do vpc peering with another aws acct
+- good to know
+  - vpc peering can work interregion,cross account
+  - you can reference a secgroup of a peered vpc(works cross acct)
+  - ![arch w/vpc peering added](img/21-vpcpeering.png)
+- one vpc is the requester, creates a peer connection request
+- connection isnt complete until the requested vpc accepts
+- to work also must setup routes in table
 
 #
 
 ## 248. VPC Endpoints
 
--
+- designed for you to access AWS services(see arch diagram)
+- endpts allow you to connect to AWS services using a private network instead of a public(www)
+  network
+- scale horizontally and are redundant
+- remove the need to setup IGW,NATGW, etc to access AWS services
+- 2 types of endpts
+  - interface: provisions an ENI(private IP) as an entry point(must attach secgroup)-most AWS services
+  - Gateway: provisions a target and must be used in a route table - S3 and DDB
+- troubleshooting
+  - check DNS setting resolution in your VPC
+  - check route tables if using gateway
 
 #
 
 ## 249. VPC Flow Logs & Athena
 
+- capture information about IP traffic going into your interfaces
+- 3 types:
+  - vpc flow logs
+  - subnet flow logs
+  - elastic network interface flow logs
+- help monitor and troubleshoot connection issues
+- flog log data can go into S3 and cloudwatch logs
+- can capture network information from some AWS services: elb, rds, elasticache, redshift, workspaces, etc
+- ![arch of vpc flow logs](img/21-vpcflowlogs.png)
+- query vpc flow logs using athena on S3 or cloudwatch logs insights
 -
 
 #

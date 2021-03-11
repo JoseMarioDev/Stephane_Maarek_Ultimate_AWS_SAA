@@ -18,3 +18,15 @@
 ### section 2
 
 - code and slides download
+
+### section 25
+
+- whitepapers and architectures
+
+### section 26
+
+- preparing for exam and practice exam
+
+### section 27
+
+- congratulations and thank you

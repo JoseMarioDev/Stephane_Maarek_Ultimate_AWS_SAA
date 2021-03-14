@@ -5,8 +5,6 @@
 - attempt 1: 61.54%
 - attempt 2: 87.69%
 
-#
-
 ### Domains - first attempt
 
 - CSAA - Design Cost-Optimized Architectures: 50%
@@ -92,31 +90,21 @@
 
 - attempt 1: 83.08%
 
-#
-
 ### set 2
 
 - attempt 1: 89.23%
-
-#
 
 ### set 3
 
 - attempt 1: 78.46%
 
-#
-
 ### set 4
 
 - attempt 1:
 
-#
-
 ### set 5
 
 - attempt 1:
-
-#
 
 ### set 6
 
@@ -126,25 +114,19 @@
 
 ## SECTION BASED
 
-### Design Resilient Architectures
+### 1. Design Resilient Architectures
 
 - attempt 1: 96.67% (29/30)
 
-#
-
-### Design High performance Architectures
+### 2. Design High performance Architectures
 
 - attempt 1: 90.00% (27/30)
 
-#
-
-### Design Secure Applications & Architectures
+### 3. Design Secure Applications & Architectures
 
 - attempt 1: 76.67%(23/30)
 
-#
-
-### Design Cost optimized Architectures
+### 4. Design Cost optimized Architectures
 
 - attempt 1: 92.59%(25/27)
 
@@ -165,5 +147,7 @@
 - S3:
 - SQS:
 - VPC:
+
+#
 
 ## FINAL TEST

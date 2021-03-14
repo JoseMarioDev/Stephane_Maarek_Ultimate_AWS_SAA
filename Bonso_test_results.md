@@ -102,7 +102,7 @@
 
 ### set 3
 
-- attempt 1:
+- attempt 1: 78.46%
 
 #
 
@@ -124,8 +124,32 @@
 
 #
 
-## TOPIC MODE
+## SECTION BASED
+
+### Design Resilient Architectures
+
+- attempt 1:96.67% (29/30)
+
+#
+
+### Design High performance Architectures
+
+- attempt 1:90.00% (27/30)
+
+#
+
+### Design Secure Applications & Architectures
+
+- attempt 1:
+
+#
+
+### Design Cost optimized Architectures
+
+- attempt 1:
+
+#
+
+## TOPIC BASED
 
 ## FINAL TEST
-
-## SECTION MODE

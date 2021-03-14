@@ -128,28 +128,42 @@
 
 ### Design Resilient Architectures
 
-- attempt 1:96.67% (29/30)
+- attempt 1: 96.67% (29/30)
 
 #
 
 ### Design High performance Architectures
 
-- attempt 1:90.00% (27/30)
+- attempt 1: 90.00% (27/30)
 
 #
 
 ### Design Secure Applications & Architectures
 
-- attempt 1:
+- attempt 1: 76.67%(23/30)
 
 #
 
 ### Design Cost optimized Architectures
 
-- attempt 1:
+- attempt 1: 92.59%(25/27)
 
 #
 
 ## TOPIC BASED
+
+- Auto-Scaling:
+- CloudFront:
+- Dynamo DB:
+- EBS:
+- EC2:
+- EFS:
+- ELB:
+- IAM:
+- Lambda:
+- RDS:
+- S3:
+- SQS:
+- VPC:
 
 ## FINAL TEST

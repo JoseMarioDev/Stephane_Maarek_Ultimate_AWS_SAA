@@ -59,7 +59,7 @@
 ### set 5
 
 - attempt 1:67.69%
-- attempt 2:
+- attempt 2: 87.69% (57/65)
 
 ### Domains - first attempt
 
@@ -100,7 +100,7 @@
 
 ### set 4
 
-- attempt 1:
+- attempt 1: 87.69%
 
 ### set 5
 

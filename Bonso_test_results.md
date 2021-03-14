@@ -104,7 +104,7 @@
 
 ### set 5
 
-- attempt 1:
+- attempt 1: 93.85% (61/65)
 
 ### set 6
 

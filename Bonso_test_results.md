@@ -134,19 +134,19 @@
 
 ## TOPIC BASED
 
-- Auto-Scaling:
-- CloudFront:
-- Dynamo DB:
-- EBS:
-- EC2:
-- EFS:
-- ELB:
-- IAM:
-- Lambda:
-- RDS:
-- S3:
-- SQS:
-- VPC:
+- Auto-Scaling: 100% (8/8)
+- CloudFront: 85.71% (6/7)
+- Dynamo DB: 100% (8/8)
+- EBS: 87.5%(7/8)
+- EC2: 100% (8/8)
+- EFS: 100% (4/4)
+- ELB: 87.5%(7/8)
+- IAM: 87.5%(7/8)
+- Lambda: 100% (8/8)
+- RDS: 100% (8/8)
+- S3: 87.5%(7/8)
+- SQS: 100% (4/4)
+- VPC:100% (4/4)
 
 #
 

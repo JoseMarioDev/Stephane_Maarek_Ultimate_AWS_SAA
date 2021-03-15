@@ -151,3 +151,22 @@
 #
 
 ## FINAL TEST
+
+- attempt 1:
+
+#
+
+## MISC Notes
+
+- concepts to review
+  1. ECS/EKS/FARGATE
+  2. Cloudwatch
+  3. different Instance Types/Storage Types
+  4. EMR(Hadoop?)
+  5. Kinesis
+  6. CloudHSM/Config/Macie
+  7. Redshift
+  8. SWF
+- scores on Cantrill's practice tests
+  - attempt 1:
+  - attempt 2:

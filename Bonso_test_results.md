@@ -72,15 +72,15 @@
 
 ### set 6
 
-- attempt 1:
+- attempt 1: 76.92%(50/65)
 - attempt 2:
 
 ### Domains - first attempt
 
-- CSAA - Design Cost-Optimized Architectures: %
-- CSAA - Design High-Performing Architectures: %
-- CSAA - Design Resilient Architectures: %
-- CSAA - Design Secure Applications and Architectures:%
+- CSAA - Design Cost-Optimized Architectures: 100%
+- CSAA - Design High-Performing Architectures: 69.23%
+- CSAA - Design Resilient Architectures: 72.22%
+- CSAA - Design Secure Applications and Architectures:87.5%
 
 #
 
@@ -108,7 +108,7 @@
 
 ### set 6
 
-- attempt 1:
+- attempt 1: 100% (65/65)
 
 #
 

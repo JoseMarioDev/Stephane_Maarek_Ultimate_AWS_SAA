@@ -152,7 +152,7 @@
 
 ## FINAL TEST
 
-- attempt 1:
+- attempt 1: 98.46% (64/65)
 
 #
 
